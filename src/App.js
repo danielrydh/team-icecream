@@ -4,14 +4,21 @@ import { GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
 import CurrentLocation from './Map';
 
 const markers = [
-  { position: {
+  {
+    position: {
       lat: 59.308761,
-      lng: 18.282199},
-    title: 'Dolores park'},
-    { position: {lat: 59.308761,
-      lng: 18.283399},
-      title: 'Crillzors park'}
-  ];
+      lng: 18.282199
+    },
+    title: 'Dolores park'
+  },
+  {
+    position: {
+      lat: 59.308761,
+      lng: 18.283399
+    },
+    title: 'Crillzors park'
+  }
+];
 
 export class MapContainer extends Component {
   state = {
@@ -43,7 +50,7 @@ export class MapContainer extends Component {
       <CurrentLocation centerAroundCurrentLocation google={this.props.google}>
         <Marker onClick={this.onMarkerClick} name={'current location'} />
         {markers.map((marker, index) => <Marker key={index} {...marker} />
-        
+
         )}
         {/*<Marker name={'Dolores park'} position={{lat: 59.308761, lng: 18.282199}} />*/}
         <InfoWindow
