@@ -25,6 +25,22 @@ export const UIRow = styled.div`
       justify-content: center; 
       align-items: center;
     `: null}
+    
+  ${p => p.startCenter
+    ? `
+      justify-content: flex-start; 
+      align-items: center;
+    `: null}
+
+  ${p => p.start
+    ? `
+      justify-content: flex-start;
+    `: null}
+
+  ${p => p.end
+    ? `
+      justify-content: flex-end;
+    `: null}
 `;
 
 export const UIImg = styled.img`

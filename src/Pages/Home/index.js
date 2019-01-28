@@ -14,7 +14,7 @@ const Home = () => {
       <UIRow height="25%" flex row center>
         <Text heading gold center nomargin>Cats With Hats</Text>
       </UIRow>
-      <UIRow height="55%" flex row center>
+      <UIRow height="55%" flex startCenter>
         <UIImg src={cats.grey.idle} height="80%" margin />
       </UIRow>
 

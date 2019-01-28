@@ -11,7 +11,7 @@ const SignIn = () => {
   return (
     <Fragment>
       <UIRow height="25%" flex row center>
-        <Text heading gold>Sign In</Text>
+        <Text heading gold>Log in</Text>
       </UIRow>
       <UIRow height="65%" flex>
         <Button value="sign_in_with_goolge" text="Google" fullW />
