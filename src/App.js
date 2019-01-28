@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import Map from './components/Map';
+import { Text } from './GeneralStyles';
 
 class App extends Component {
-  render () {
+  render() {
     return (
       <div className="app">
-        <Map/>
+        <Text>This worked</Text>
       </div>
     );
   }

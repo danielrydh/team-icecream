@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
-export const Button = styled.button`
-  width: ${p => p.fullW};
+export const Btn = styled.button`
+  ${p => p.fullW ? ' width: 100%' : null};
+  padding: 10px 16px;
+  font-weight: 600;
 `;
