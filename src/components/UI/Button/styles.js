@@ -20,4 +20,4 @@ export const Btn = styled.button`
     background: ${colors.gold.darken(10)};
   }
 
-  `;
+`;
