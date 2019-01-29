@@ -31,10 +31,7 @@ export class MapContainer extends Component {
     }
   };
 
-
-
   render() {
-
     const markers = [
       {
         position: {
@@ -53,7 +50,12 @@ export class MapContainer extends Component {
           lat: 59.308761,
           lng: 18.283399
         },
-        title: 'Crillzors park'
+        title: 'Crillzors park',
+        icon: {
+          url: cats.grey.idle,
+          anchor: new this.props.google.maps.Point(32, 32),
+          scaledSize: new this.props.google.maps.Size(32, 32)
+        }
       }
     ];
 

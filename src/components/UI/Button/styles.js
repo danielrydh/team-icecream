@@ -3,7 +3,7 @@ import colors from '../colors';
 
 export const Btn = styled.button`
   ${p => p.fullW ? ' width: 100%' : null};
-  margin-bottom: 1.5rem;
+  ${p => p.margin ? 'margin-bottom: 1rem;' : null};
   padding: 1.25rem;
   
   font-weight: 600;
@@ -16,8 +16,24 @@ export const Btn = styled.button`
 
   transition: background 200ms;
 
-  &:hover {
+  :nth-last-of-type(1) {
+    margin-bottom: 0;
+  }
+
+  :hover {
     background: ${colors.gold.darken(10)};
+  }
+
+  @media screen and (min-width: 600px) {
+    ${p => p.fullW
+    ? `
+      width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+    `
+    : null}
+
+    ${p => p.margin ? 'margin-bottom: 1.5rem;' : null};
   }
 
 `;
