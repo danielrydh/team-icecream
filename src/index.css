@@ -8,6 +8,18 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+a {
+  text-decoration: none;
+}
+
+.Main-Window {
+  height: 100%;
+}
+
+#root {
+  height: 100vh;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
