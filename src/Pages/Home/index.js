@@ -25,9 +25,12 @@ const Home = () => {
         <Link to={ROUTES.SIGN_UP}>
           <Button value="signup_btn" text="Sign Up" fullW />
         </Link>
+<<<<<<< HEAD
         <Link to={ROUTES.MAP}>
           <Button value="Map" text="Map" fullW />
         </Link>
+=======
+>>>>>>> master
       </UIRow>
 
     </Fragment>

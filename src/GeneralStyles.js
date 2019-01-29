@@ -25,7 +25,11 @@ export const UIRow = styled.div`
       justify-content: center; 
       align-items: center;
     `: null}
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> master
   ${p => p.startCenter
     ? `
       justify-content: flex-start; 
@@ -39,7 +43,11 @@ export const UIRow = styled.div`
 
   ${p => p.end
     ? `
+<<<<<<< HEAD
       justify-cont+ent: flex-end;
+=======
+      justify-content: flex-end;
+>>>>>>> master
     `: null}
 `;
 
