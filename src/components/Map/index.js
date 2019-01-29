@@ -1,26 +1,12 @@
 import React , { Component } from 'react';
+import cats from '../../constants/cats';
 
 import { GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
 
 import { key } from '../../key';
 import CurrentLocation from './Map';
 
-const markers = [
-  {
-    position: {
-      lat: 59.308761,
-      lng: 18.282199
-    },
-    title: 'Dolores park'
-  },
-  {
-    position: {
-      lat: 59.308761,
-      lng: 18.283399
-    },
-    title: 'Crillzors park'
-  }
-];
+
 
 export class MapContainer extends Component {
   state = {
@@ -48,6 +34,29 @@ export class MapContainer extends Component {
 
 
   render() {
+
+    const markers = [
+      {
+        position: {
+          lat: 59.308761,
+          lng: 18.282199
+        },
+        title: 'Dolores park',
+        icon: {
+          url: cats.grey.idle,
+          anchor: new this.props.google.maps.Point(32,32),
+          scaledSize: new this.props.google.maps.Size(32,32)
+        }
+      },
+      {
+        position: {
+          lat: 59.308761,
+          lng: 18.283399
+        },
+        title: 'Crillzors park'
+      }
+    ];
+
     return (
       <CurrentLocation centerAroundCurrentLocation google={this.props.google}>
         <Marker onClick={this.onMarkerClick} name={'current location'} />

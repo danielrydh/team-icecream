@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import Map from '../Map';
+import Map from '../../components/Map';
 
 const MapView = () => {
   return (

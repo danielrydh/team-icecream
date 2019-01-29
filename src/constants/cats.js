@@ -14,7 +14,7 @@ import light_brown_idle from './assets/cats/light_brown/cat_idle.gif'
 import orange_idle from './assets/cats/orange/cat_idle.gif'
 
 
-export const cats = {
+const cats = {
   brown: {
     idle: brown_idle
   },
