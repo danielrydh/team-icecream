@@ -63,8 +63,76 @@ export class CurrentLocation extends React.Component {
       const mapConfig = Object.assign(
         {},
         {
-          center: center,
-          zoom: zoom
+          center: { center },
+          zoom: zoom,
+          styles: [
+            {
+              "featureType": "all",
+              "elementType": "labels.text.fill",
+              "stylers": [
+                { "visibility": "off" }
+              ]
+            },
+            {
+              "featureType": "all",
+              "elementType": "labels.text.stroke",
+              "stylers": [{ "visibility": "off" }]
+            }, {
+              "featureType": "all",
+              "elementType": "labels.icon",
+              "stylers": [{ "visibility": "off" }]
+            }, {
+              "featureType": "landscape.man_made",
+              "elementType": "geometry.fill",
+              "stylers": [{ "color": "#a1f199" }]
+            }, {
+              "featureType": "landscape.natural.landcover",
+              "elementType": "geometry.fill",
+              "stylers": [{ "color": "#37bda2" }]
+            }, {
+              "featureType": "landscape.natural.terrain",
+              "elementType": "geometry.fill",
+              "stylers": [{ "color": "#37bda2" }]
+            }, {
+              "featureType": "poi.attraction",
+              "elementType": "geometry.fill",
+              "stylers": [{ "visibility": "on" }]
+            }, {
+              "featureType": "poi.business",
+              "elementType": "geometry.fill",
+              "stylers": [{ "color": "#e4dfd9" }]
+            }, {
+              "featureType": "poi.business",
+              "elementType": "labels.icon",
+              "stylers": [{ "visibility": "off" }]
+            }, {
+              "featureType": "poi.park",
+              "elementType": "geometry.fill",
+              "stylers": [{ "color": "#37bda2" }]
+            }, {
+              "featureType": "road",
+              "elementType": "geometry.fill",
+              "stylers": [{ "color": "#84b09e" }]
+            }, {
+              "featureType": "road",
+              "elementType": "geometry.stroke",
+              "stylers": [
+                { "color": "#fafeb8" },
+                { "weight": "1.25" }
+              ]
+            }, {
+              "featureType": "road.highway",
+              "elementType": "labels.icon",
+              "stylers": [{ "visibility": "off" }]
+            }, {
+              "featureType": "water",
+              "elementType": "geometry.fill",
+              "stylers": [{ "color": "#5ddad6" }]
+            }],
+          maxZoom: 20,
+          minZoom: 0,
+          mapTypeId: 'terrain',
+
         }
       );
       // maps.Map() is constructor that instantiates the map
