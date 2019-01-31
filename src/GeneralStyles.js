@@ -26,21 +26,20 @@ export const UIRow = styled.div`
   ${p => p.relative ? 'position: relative;' : null} 
   ${p => p.flex ? `display: flex;` : null};
   ${p => p.row ? 'flex-direction: row' : 'flex-direction: column'};
-  ${p => p.center
+
+  ${p => p.center ? `justify-content: center;` : null}
+  ${p => p.centerCenter
     ? `
       justify-content: center; 
       align-items: center;
     `: null};
+
+  ${p => p.start ? `justify-content: flex-start;` : null};
   ${p => p.startCenter
     ? `
-      justify-content: flex-start; 
-      align-items: center;
-    `: null};
-
-  ${p => p.start
-    ? `
-      justify-content: flex-start;
-    `: null};
+    justify-content: flex-start; 
+    align-items: center;
+  `: null};
 
   ${p => p.end
     ? `
@@ -76,3 +75,4 @@ export const StyledLink = styled(Link)`
     margin-bottom: 0;
   }
 `;
+
