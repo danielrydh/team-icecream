@@ -12,7 +12,7 @@ const MapView = () => {
       <UIRow height="calc(100% - 140px)" noPadding relative>
         <Map />
       </UIRow>
-      <UIRow height="70px" flex endCenter>
+      <UIRow height="70px" flex endCenter backgroundDark>
         <StyledLink to={ROUTES.HOME}>
           <Text gold>Back</Text>
         </StyledLink>

@@ -4,7 +4,7 @@ import colors from './components/UI/colors';
 import { Link } from 'react-router-dom';
 
 export const Container = styled.div`
-  background: ${p => p.background ? colors.background.hsl : null};
+  ${p => p.background ? `background: ${colors.background.hsl}` : null};
   width: 100%;
   height: 100%;
 
@@ -14,7 +14,7 @@ export const Container = styled.div`
 
 export const UIRow = styled.div`
   height: ${p => p.height};
-  background: none;
+  background: ${p => p.backgroundDark ? colors.background.darken(10) : null};
   ${ p => p.noPadding
     ? null
     : `

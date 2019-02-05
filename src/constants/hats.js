@@ -6,11 +6,51 @@ import hat5 from './assets/hats/hat5.png';
 
 
 const hats = {
-  hat1: hat1,
-  hat2: hat2,
-  hat3: hat3,
-  hat4: hat4,
-  hat5: hat5
+  hat1: {
+    name: 'Master Hat',
+    icon: hat1,
+    tier: 2,
+    powerup: {
+      modifier: 1.25,
+      type: 'speed'
+    }
+  },
+  hat2: {
+    name: 'Jumpy hat',
+    icon: hat2,
+    tier: 3,
+    powerup: {
+      modifier: 1.3,
+      type: 'jump'
+    }
+  },
+  hat3: {
+    name: '',
+    icon: hat3,
+    tier: 1,
+    powerup: {
+      modifier: 1,
+      type: null
+    }
+  },
+  hat4: {
+    name: '',
+    icon: hat4,
+    tier: 1,
+    powerup: {
+      modifier: 1,
+      type: null
+    }
+  },
+  hat5: {
+    name: '',
+    icon: hat5,
+    tier: 1,
+    powerup: {
+      modifier: 1,
+      type: null
+    }
+  }
 }
 
 export default hats;
