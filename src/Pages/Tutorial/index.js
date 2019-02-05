@@ -12,7 +12,7 @@ import hats from '../../constants/hats';
 
 const tutorial_page_1 = [
   {
-    content: 'A cat with a hat where you collects hats and the one with most hats wins. You can either search for hats on a map in real places around the world. Or you can challenge persons who are nearby on the street. You can also pick a fight with the computer to win hats.',
+    content: 'A cat with a hat is a game where you collects hats and the one with most hats wins. You can either search for hats on a map in real places around the world. Or you can challenge persons who are nearby on the street. You can also pick a fight with the computer to win hats.',
     type: 'text'
   },
 ]
