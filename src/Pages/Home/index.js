@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { Text } from '../../components/UI/TextComponent';
 import { UIRow, UIImg, StyledLink } from '../../GeneralStyles';
-
+import { withAuthorization } from '../Session';
 import { Link } from 'react-router-dom';
 
 import * as ROUTES from '../../constants/routes';
@@ -17,7 +17,7 @@ const Home = () => {
       </UIRow>
 
       <UIRow height="50%" flex startCenter>
-        <Link to={ROUTES.MAP} style={{ height: '100%' }}>
+        <Link to={ROUTES.HOME} style={{ height: '100%' }}>
           <UIImg src={cats.grey.idle} height="80%" />
         </Link>
       </UIRow>
@@ -33,5 +33,6 @@ const Home = () => {
     </Fragment>
   );
 }
+const condition = authUser => !!authUser;
 
-export default Home;
+export default withAuthorization(condition)(Home);

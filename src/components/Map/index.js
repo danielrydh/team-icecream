@@ -61,11 +61,15 @@ export class MapContainer extends Component {
 
     return (
       <CurrentLocation centerAroundCurrentLocation google={this.props.google}>
-        <Marker onClick={this.onMarkerClick} name={'current location'} />
+        <Marker onClick={this.onMarkerClick} name={'current location'} title={'current location'} icon={{
+          url: cats.grey.idle,
+          anchor: new this.props.google.maps.Point(32, 32),
+          scaledSize: new this.props.google.maps.Size(32, 32)
+        }}/>
         {markers.map((marker, index) => <Marker key={index} {...marker} />
 
         )}
-        {/*<Marker name={'Dolores park'} position={{lat: 59.308761, lng: 18.282199}} />*/}
+        
         <InfoWindow
           marker={this.state.activeMarker}
           visible={this.state.showingInfoWindow}

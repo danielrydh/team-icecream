@@ -60,6 +60,34 @@ export const UIImg = styled.img`
   margin-bottom: ${p => p.margin ? '1.5rem' : null}
 `;
 
+export const Input = styled.input`
+  background:transparent;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  height: 30px;
+  width: 100%;
+  margin-bottom: 10px;
+  border: none;
+  text-align: center;
+  outline: none;
+
+  :focus {
+    border-bottom: 1px solid gold;
+  }
+  
+
+`;
+export const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  height: auto;
+  margin: 25px auto;
+`;
 export const StyledLink = styled(Link)`
   display: flex;
   flex-direction: column;
