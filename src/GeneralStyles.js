@@ -4,7 +4,7 @@ import colors from './components/UI/colors';
 import { Link } from 'react-router-dom';
 
 export const Container = styled.div`
-  background: ${p => p.background ? colors.background.hsl : null};
+  ${p => p.background ? `background: ${colors.background.hsl}` : null};
   width: 100%;
   height: 100%;
 
@@ -14,7 +14,7 @@ export const Container = styled.div`
 
 export const UIRow = styled.div`
   height: ${p => p.height};
-  background: none;
+  background: ${p => p.backgroundDark ? colors.background.darken(10) : null};
   ${ p => p.noPadding
     ? null
     : `
@@ -26,21 +26,20 @@ export const UIRow = styled.div`
   ${p => p.relative ? 'position: relative;' : null} 
   ${p => p.flex ? `display: flex;` : null};
   ${p => p.row ? 'flex-direction: row' : 'flex-direction: column'};
-  ${p => p.center
+
+  ${p => p.center ? `justify-content: center;` : null}
+  ${p => p.centerCenter
     ? `
       justify-content: center; 
       align-items: center;
     `: null};
+
+  ${p => p.start ? `justify-content: flex-start;` : null};
   ${p => p.startCenter
     ? `
-      justify-content: flex-start; 
-      align-items: center;
-    `: null};
-
-  ${p => p.start
-    ? `
-      justify-content: flex-start;
-    `: null};
+    justify-content: flex-start; 
+    align-items: center;
+  `: null};
 
   ${p => p.end
     ? `
@@ -87,6 +86,7 @@ export const Form = styled.form`
   align-content: center;
   height: auto;
   margin: 25px auto;
+  width: ${p => p.fullW ? '100%' : null};
 `;
 export const StyledLink = styled(Link)`
   display: flex;
@@ -104,3 +104,4 @@ export const StyledLink = styled(Link)`
     margin-bottom: 0;
   }
 `;
+

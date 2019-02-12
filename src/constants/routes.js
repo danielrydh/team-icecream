@@ -5,3 +5,4 @@ export const MAP = '/map';
 export const SETTINGS = '/settings';
 export const TUTORIAL = '/tutorial';
 export const BATTLE = '/battle';
+export const Admin = '/Admin';

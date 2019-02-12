@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import cats from '../../constants/cats';
-
 import { GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
-
 import { key } from '../../key';
 import CurrentLocation from './Map';
 

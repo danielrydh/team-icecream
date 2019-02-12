@@ -1,21 +1,27 @@
 import React, { Fragment } from 'react';
 import Map from '../../components/Map';
-import { UIRow } from '../../GeneralStyles';
-import { StyledLink } from '../../GeneralStyles';
+import { StyledLink,  UIRow } from '../../GeneralStyles';
 import { Text } from '../../components/UI/TextComponent';
 import * as ROUTES from '../../constants/routes';
+import '../Firebase/firebase';
+
+
+
+
+
 
 const MapView = () => {
   return (
     <Fragment>
-      <UIRow height="70px"></UIRow>
-      <UIRow height="calc(100% - 140px)" noPadding relative>
+      {/* <UIRow height="30px" flex row center>
+      </UIRow> */}
+      <UIRow height="calc(100% - 154px)" noPadding relative>
         <Map />
       </UIRow>
-      <UIRow height="70px" flex endCenter>
-        <StyledLink to={ROUTES.HOME}>
-          <Text gold>Back</Text>
-        </StyledLink>
+      <UIRow height="70px" flex endCenter backgroundLight>
+         <StyledLink to={ROUTES.HOME}>
+          <Text style={{marginBottom:"26px"}} gold>Back</Text>
+        </StyledLink> 
       </UIRow>
     </Fragment>
   );

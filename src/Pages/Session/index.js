@@ -1,5 +1,5 @@
-import AuthUserContext from './context';
-import withAuthentication from './withAuthentication';
-import withAuthorization from './withAutrorization';
+import AuthUserContext from '../../Pages/Session/context';
+import withAuthentication from '../../Pages/Session/withAuthentication';
+import withAuthorization from '../../Pages/Session/withAutrorization';
 
 export { AuthUserContext, withAuthentication, withAuthorization };

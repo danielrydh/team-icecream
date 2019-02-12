@@ -6,15 +6,27 @@ import Button from '../../components/UI/Button';
 import { withFirebase } from '../Firebase';
 import { compose } from 'recompose';
 import * as ROUTES from '../../constants/routes';
+import * as ROLES from '../../constants/roles';
+import 'firebase/auth';
+import 'firebase/database';
+
 
 const INITIAL_STATE = {
   username: '',
   email: '',
   passwordOne: '',
   passwordTwo: '',
+  isAdmin: false,
   error: null,
 };
-
+const SignInPage = () => (
+  <div>
+    
+    <SignUpForm />
+    {/* <PasswordForgetLink />
+    <SignUpLink /> */}
+  </div>
+);
 class SignUpFormBase extends Component {
   constructor(props) {
     super(props);
@@ -23,7 +35,12 @@ class SignUpFormBase extends Component {
   }
 
   onSubmit = event => {
-    const { username, email, passwordOne } = this.state;
+    const { username, email, passwordOne, isAdmin } = this.state;
+
+    const roles = [];
+    if (isAdmin) {
+    roles.push(ROLES.Admin);
+    }
 
     this.props.firebase
       .doCreateUserWithEmailAndPassword(email, passwordOne)
@@ -34,10 +51,11 @@ class SignUpFormBase extends Component {
           .set({
             username,
             email,
+            roles,
           })
           .then(() => {
             this.setState({ ...INITIAL_STATE });
-            this.props.history.push(ROUTES.TUTORIAL);
+            this.props.history.push(ROUTES.MAP);
           })
           .catch(error => {
             this.setState({ error });
@@ -54,12 +72,17 @@ class SignUpFormBase extends Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
+  onChangeCheckbox = event => {
+    this.setState({ [event.target.name]: event.target.checked });
+    };
+
   render() {
     const {
       username,
       email,
       passwordOne,
       passwordTwo,
+      isAdmin,
       error,
     } = this.state;
 
@@ -105,7 +128,19 @@ class SignUpFormBase extends Component {
               type="password"
               placeholder="Confirm Password"
             />
-            <Button disabled={isInvalid} type="submit"  value="sign_up_with_email/pw" text="Email/Pw" fullW margin />
+            <label>
+              Admin:
+              <Input
+              name="isAdmin"
+              type="checkbox"
+              checked={isAdmin}
+              onChange={this.onChangeCheckbox}
+              />
+            </label>
+            {/* <Button disabled={isInvalid} type="submit"  value="sign_up_with_email/pw" text="Email/Pw" fullW margin /> */}
+            <button disabled={isInvalid} type="submit">
+          Sign up
+        </button>
 
             {error && <p>{error.message}</p>}
           </Form>
@@ -114,7 +149,7 @@ class SignUpFormBase extends Component {
         <Button value="sign_up_with_facebook" text="Facebook" fullW margin />
       </UIRow>
       <UIRow height="10%" flex row center>
-        <StyledLink to={ROUTES.TUTORIAL}>
+        <StyledLink to={ROUTES.HOME}>
           <Text gold>Back</Text>
         </StyledLink>
       </UIRow>
@@ -136,5 +171,6 @@ const SignUpForm = compose(
   withFirebase,
 )(SignUpFormBase);
 
-export default SignUpForm;
+export  {SignUpForm};
+export default SignInPage;
 

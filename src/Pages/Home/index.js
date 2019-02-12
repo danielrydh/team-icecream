@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { Text } from '../../components/UI/TextComponent';
 import { UIRow, UIImg, StyledLink } from '../../GeneralStyles';
-import { withAuthorization } from '../Session';
+// import { withAuthorization } from '../Session';
 import { Link } from 'react-router-dom';
 
 import * as ROUTES from '../../constants/routes';
@@ -33,6 +33,7 @@ const Home = () => {
     </Fragment>
   );
 }
-const condition = authUser => !!authUser;
+// const condition = authUser => !!authUser;
 
-export default withAuthorization(condition)(Home);
+// export default withAuthorization(condition)(Home);
+export default Home;
