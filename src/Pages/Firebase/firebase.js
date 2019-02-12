@@ -13,13 +13,13 @@ import 'firebase/database';
 // };
 
 var config = {
-    apiKey: "AIzaSyA5BHraB38zI0tMPeCkdaRq4xjhikKmt0w",
-    authDomain: "cat-with-a-hat.firebaseapp.com",
-    databaseURL: "https://cat-with-a-hat.firebaseio.com",
-    projectId: "cat-with-a-hat",
-    storageBucket: "cat-with-a-hat.appspot.com",
-    messagingSenderId: "327642713901"
-  };
+  apiKey: "AIzaSyA5BHraB38zI0tMPeCkdaRq4xjhikKmt0w",
+  authDomain: "cat-with-a-hat.firebaseapp.com",
+  databaseURL: "https://cat-with-a-hat.firebaseio.com",
+  projectId: "cat-with-a-hat",
+  storageBucket: "cat-with-a-hat.appspot.com",
+  messagingSenderId: "327642713901"
+};
 
 class Firebase {
   constructor() {
@@ -30,7 +30,7 @@ class Firebase {
 
 
     this.googleProvider = new app.auth.GoogleAuthProvider();
-    //this.facebookProvider = new app.auth.FacebookAuthProvider();
+    this.facebookProvider = new app.auth.FacebookAuthProvider();
   }
 
   // *** Auth API ***
@@ -44,8 +44,8 @@ class Firebase {
   doSignInWithGoogle = () =>
     this.auth.signInWithPopup(this.googleProvider);
 
-  // doSignInWithFacebook = () =>
-  //   this.auth.signInWithPopup(this.facebookProvider);
+  doSignInWithFacebook = () =>
+    this.auth.signInWithPopup(this.facebookProvider);
 
   doSignOut = () => this.auth.signOut();
 
@@ -55,9 +55,9 @@ class Firebase {
     this.auth.currentUser.updatePassword(password);
 
   // *** Merge Auth and DB User API *** //
-    onAuthUserListener = (next, fallback) =>
-      this.auth.onAuthStateChanged(authUser => {
-        if (authUser) {
+  onAuthUserListener = (next, fallback) =>
+    this.auth.onAuthStateChanged(authUser => {
+      if (authUser) {
         this.user(authUser.uid)
           .once('value')
           .then(snapshot => {
@@ -65,7 +65,7 @@ class Firebase {
 
             // default empty roles
             if (!dbUser.roles) {
-            dbUser.roles = [];
+              dbUser.roles = [];
             }
             // merge auth and db user
             authUser = {
@@ -77,10 +77,10 @@ class Firebase {
             next(authUser);
           });
 
-    } else {
-       fallback();
-    }
-  });
+      } else {
+        fallback();
+      }
+    });
 
   // *** User API ***
 
