@@ -6,7 +6,7 @@ const Tutorial = () => {
   return (
     <Fragment>
     <UIRow height = "80%" flex >
-     <UIImg src= 
+     <UIImg src="" ></UIImg>
     </UIRow>
 
     <UIRow>
