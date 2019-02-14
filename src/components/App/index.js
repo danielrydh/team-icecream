@@ -11,7 +11,7 @@ import Tutorial from '../../Pages/Tutorial';
 import MapView from '../../Pages/Map';
 import Settings from '../../Pages/Settings';
 import Battle from '../../Pages/Battle';
-
+import CreateCat from '../../Pages/CreateCat';
 import * as ROUTES from '../../constants/routes';
 
 class App extends Component {
@@ -27,6 +27,7 @@ class App extends Component {
             <Route path={ROUTES.MAP} component={MapView} />
             <Route path={ROUTES.SETTINGS} component={Settings} />
             <Route path={ROUTES.BATTLE} component={Battle} />
+            <Route path={ROUTES.CREATE_CAT} component={CreateCat} />
           </Container>
         </Router>
       </div>
