@@ -4,46 +4,46 @@ import { StyledLink, UIRow } from '../../GeneralStyles';
 import { Text } from '../../components/UI/TextComponent';
 import SignOutButton from '../SignOut';
 import * as ROUTES from '../../constants/routes';
-import  { AuthUserContext }  from '../../Pages/Session';
+import { AuthUserContext } from '../../Pages/Session';
 import * as ROLES from '../../constants/roles';
 
 
 
 const Navigation = ({ authUser }) => (
-  
-    <AuthUserContext.Consumer>
-      {authUser => 
-        authUser ? (
-        <NavigationAuth authUser={authUser}/>
-        ) : (
-        <NavigationNonAuth />
+
+  <AuthUserContext.Consumer>
+    {authUser =>
+      authUser ? (
+        <NavigationAuth authUser={authUser} />
+      ) : (
+          <NavigationNonAuth />
         )
-      }
-    </AuthUserContext.Consumer>  
-  
+    }
+  </AuthUserContext.Consumer>
+
 );
 
 const NavigationAuth = ({ authUser }) => (
-  <ul style={{marginTop: '0', paddingTop:'10px', paddingLeft:'0'}}>
-    
-    {authUser.roles.includes(ROLES.Admin) && ( 
+  <ul style={{ marginTop: '0', paddingTop: '10px', paddingLeft: '0' }}>
+
+    {authUser.roles.includes(ROLES.Admin) && (
       <li>
-        <UIRow  flex endCenter >
+        <UIRow flex endCenter >
           <StyledLink to={ROUTES.Admin} >
-              <Text style={{marginBottom:"0"}} gold>Admin</Text>
-          </StyledLink> 
+            <Text style={{ marginBottom: "0" }} gold>Admin</Text>
+          </StyledLink>
         </UIRow>
       </li>
     )}
     <li>
-        <SignOutButton />
-    </li> 
+      <SignOutButton />
+    </li>
   </ul>
-  
+
 );
 
-const NavigationNonAuth = () => ( null
-  
+const NavigationNonAuth = () => (null
+
 );
 //   <ul style={{marginTop: '0', paddingTop:'10px', paddingLeft:'0'}}>
 //       <li>
@@ -54,7 +54,7 @@ const NavigationNonAuth = () => ( null
 //         </UIRow>
 //       </li>
 //   </ul>
-  
+
 // )
 
 

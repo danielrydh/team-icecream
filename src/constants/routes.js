@@ -6,3 +6,4 @@ export const SETTINGS = '/settings';
 export const TUTORIAL = '/tutorial';
 export const BATTLE = '/battle';
 export const Admin = '/Admin';
+export const PASSWORD_FORGET = '/password_change';

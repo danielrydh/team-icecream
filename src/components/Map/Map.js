@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+
 const mapStyles = {
   map: {
     position: 'absolute',
@@ -172,15 +173,27 @@ export class CurrentLocation extends React.Component {
     const style = Object.assign({}, mapStyles.map);
 
     return (
+      /*       <AuthUserContext.Consumer>
+              {authUser => ( */
       <div>
         <div style={style} ref="map">
           Loading map...
         </div>
         {this.renderChildren()}
+        {/* <LocatedTwo userId={authUser.uid} firebase={this.props.firebase} /> */}
       </div>
+      /*         )}
+            </AuthUserContext.Consumer> */
     );
+
   }
 }
+//const condition = authUser => !!authUser;
+
+/* export default compose(
+  withFirebase,
+  withAuthorization(condition)
+)(CurrentLocation); */
 export default CurrentLocation;
 
 CurrentLocation.defaultProps = {

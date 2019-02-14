@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import colors from '../colors';
 
-import ui from '../../../constants/ui';
+//import ui from '../../../constants/ui';
 
 export const Paragraph = styled.p`
   color: ${p => p.light ? colors.text.lighten(80) : colors.text.hsl};

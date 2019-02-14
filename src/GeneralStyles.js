@@ -86,6 +86,18 @@ export const Input = styled.input`
 
 `;
 
+export const Span = styled.span`
+  color: #787878;
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  margin-bottom: 24px;
+  border: none;
+  text-align: center;
+  
+`;
 export const Form = styled.form`
   display: flex;
   flex-direction: column;

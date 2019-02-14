@@ -17,23 +17,26 @@ import * as ROUTES from '../../constants/routes';
 
 import Navigation from '../../Pages/Navigation';
 import { withAuthentication } from '../../Pages/Session';
+//import { PasswordForgetLink } from '../../Pages/PasswordForgot';
+import PasswordChange from '../../Pages/PasswordChange';
 
 
-  
+
 const App = () => (
   <div className="Main-Window">
     <Router>
-        <Container background>
-          <Navigation />
-          <Route exact path={ROUTES.HOME} component={Home} />
-          <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
-          <Route path={ROUTES.SIGN_IN} component={SignInPage} />
-          <Route path={ROUTES.TUTORIAL} component={Tutorial} />
-          <Route path={ROUTES.MAP} component={MapView} />
-          <Route path={ROUTES.SETTINGS} component={Settings} />
-          <Route path={ROUTES.BATTLE} component={Battle} />
-          <Route path={ROUTES.Admin} component= {Admin} />
-        </Container>
+      <Container background>
+        <Navigation />
+        <Route exact path={ROUTES.HOME} component={Home} />
+        <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
+        <Route path={ROUTES.SIGN_IN} component={SignInPage} />
+        <Route path={ROUTES.TUTORIAL} component={Tutorial} />
+        <Route path={ROUTES.MAP} component={MapView} />
+        <Route path={ROUTES.SETTINGS} component={Settings} />
+        <Route path={ROUTES.BATTLE} component={Battle} />
+        <Route path={ROUTES.Admin} component={Admin} />
+        <Route path={ROUTES.PASSWORD_FORGET} component={PasswordChange} />
+      </Container>
     </Router>
   </div>
 )
