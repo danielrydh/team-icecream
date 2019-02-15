@@ -6,7 +6,7 @@ import { NextBtn, Paragraph, Icon } from '../../components/UI/SpeakingBubble/sty
 
 import ui from '../../constants/ui';
 import Carousel from '../../components/SwipeCarusel';
-import { hatsArray } from './data';
+import { hatsArray, catsArray } from './data';
 
 
 const CreateCat = (props) => {
@@ -17,8 +17,9 @@ const CreateCat = (props) => {
       </UIRow>
 
       <UIRow>
-        <Carousel data={hatsArray} />
+        <Carousel data={hatsArray} cats={catsArray} />
       </UIRow>
+
     </Fragment>
   );
 }
