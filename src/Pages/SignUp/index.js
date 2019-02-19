@@ -32,12 +32,17 @@ const SignInPage = () => (
     <SignUpLink /> */}
   </div>
 );
+
 class SignUpFormBase extends Component {
   constructor(props) {
     super(props);
 
     this.state = { ...INITIAL_STATE };
+
   }
+
+
+
 
   location = ({ Located }) => {
     Located.updateUserPosition();
@@ -61,10 +66,11 @@ class SignUpFormBase extends Component {
             username,
             email,
             roles,
+            position: { latitude: "0", longitude: "0" }
           })
           .then(() => {
             this.setState({ ...INITIAL_STATE });
-            this.props.history.push(ROUTES.MAP);
+            this.props.history.push(ROUTES.TUTORIAL);
           })
           .catch(error => {
             this.setState({ error });
@@ -76,6 +82,7 @@ class SignUpFormBase extends Component {
 
     event.preventDefault();
   };
+
 
   onChange = event => {
     this.setState({ [event.target.name]: event.target.value });
@@ -217,7 +224,7 @@ class SignInGoogleBase extends Component {
           })
           .then(() => {
             this.setState({ error: null });
-            this.props.history.push(ROUTES.MAP);
+            this.props.history.push(ROUTES.TUTORIAL);
           })
           .catch(error => {
             this.setState({ error });
@@ -266,7 +273,7 @@ class SignInFacebookBase extends Component {
           })
           .then(() => {
             this.setState({ error: null });
-            this.props.history.push(ROUTES.HOME);
+            this.props.history.push(ROUTES.TUTORIAL);
           })
           .catch(error => {
             this.setState({ error });

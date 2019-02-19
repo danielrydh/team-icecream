@@ -12,6 +12,7 @@ import MapView from '../../Pages/Map';
 import Settings from '../../Pages/Settings';
 import Battle from '../../Pages/Battle';
 import Admin from '../../Pages/Admin';
+// import ProfilePage from '../Location/slask';
 
 import * as ROUTES from '../../constants/routes';
 
@@ -36,6 +37,7 @@ const App = () => (
         <Route path={ROUTES.BATTLE} component={Battle} />
         <Route path={ROUTES.Admin} component={Admin} />
         <Route path={ROUTES.PASSWORD_FORGET} component={PasswordChange} />
+        {/* <Route path={ROUTES.PROFILE_PAGE} component={ProfilePage} /> */}
       </Container>
     </Router>
   </div>
