@@ -13,9 +13,8 @@ import Settings from '../../Pages/Settings';
 import Battle from '../../Pages/Battle';
 import Admin from '../../Pages/Admin';
 // import ProfilePage from '../Location/slask';
-
+import CreateCat from '../../Pages/CreateCat';
 import * as ROUTES from '../../constants/routes';
-
 import Navigation from '../../Pages/Navigation';
 import { withAuthentication } from '../../Pages/Session';
 //import { PasswordForgetLink } from '../../Pages/PasswordForgot';
@@ -37,6 +36,7 @@ const App = () => (
         <Route path={ROUTES.BATTLE} component={Battle} />
         <Route path={ROUTES.Admin} component={Admin} />
         <Route path={ROUTES.PASSWORD_FORGET} component={PasswordChange} />
+        <Route path={ROUTES.CREATE_CAT} component={CreateCat} />
         {/* <Route path={ROUTES.PROFILE_PAGE} component={ProfilePage} /> */}
       </Container>
     </Router>
@@ -44,3 +44,7 @@ const App = () => (
 )
 
 export default withAuthentication(App);
+
+
+
+

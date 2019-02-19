@@ -47,6 +47,7 @@ export const NextBtn = styled.div`
   right: 1rem;
 `;
 
+
 export const SpeakingThing = styled.img`
     width: 64px;
     height: 64px;
