@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import colors from '../colors';
 
-import ui from '../../../constants/ui';
+//import ui from '../../../constants/ui';
 
 export const Paragraph = styled.p`
   color: ${p => p.light ? colors.text.lighten(80) : colors.text.hsl};
@@ -46,6 +46,7 @@ export const NextBtn = styled.div`
   bottom: 0;
   right: 1rem;
 `;
+
 
 export const SpeakingThing = styled.img`
     width: 64px;

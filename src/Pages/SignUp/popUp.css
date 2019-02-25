@@ -1,0 +1,37 @@
+.modal {
+    font-size: 14px;
+}
+
+.popup-style {
+    background: transparent !important;
+    border: none !important;
+}
+
+.modal>.content {
+    background: #183552;
+    width: 100%;
+    padding: 10px 5px;
+}
+
+.modal>.actions {
+    background: #183552;
+    width: 100%;
+    padding: 10px 5px;
+    margin: auto;
+    text-align: center;
+}
+
+.modal>.close {
+
+    cursor: pointer;
+    position: absolute;
+    display: block;
+    padding: 2px 5px;
+    line-height: 20px;
+    right: -10px;
+    top: -10px;
+    font-size: 24px;
+    background: #ffffff;
+    border-radius: 18px;
+    border: 1px solid #cfcece;
+}

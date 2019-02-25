@@ -76,8 +76,27 @@ export const Input = styled.input`
   :focus {
     border-bottom: 1px solid gold;
   }
-  
 
+  @media screen and (min-width: 600px){
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1.5rem;
+  }
+
+`;
+
+export const Span = styled.span`
+  color: #787878;
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  margin-bottom: 24px;
+  border: none;
+  text-align: center;
+  
 `;
 export const Form = styled.form`
   display: flex;
@@ -88,12 +107,12 @@ export const Form = styled.form`
   margin: 25px auto;
   width: ${p => p.fullW ? '100%' : null};
 `;
+
 export const StyledLink = styled(Link)`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-content: center;
-
   margin-bottom: 1rem;
 
   @media screen and (min-width: 600px) {

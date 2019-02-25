@@ -1,29 +1,13 @@
 import app from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/database';
+import { config } from '../../key';
 
-
-// const config = {
-//   apiKey: process.env.API_KEY,
-//   authDomain: process.env.AUTH_DOMAIN,
-//   databaseURL: process.env.DATABASE_URL,
-//   projectId: process.env.PROJECT_ID,
-//   storageBucket: process.env.STORAGE_BUCKET,
-//   messagingSenderId: process.env.MESSAGING_SENDER_ID,
-// };
-
-var config = {
-    apiKey: "AIzaSyA5BHraB38zI0tMPeCkdaRq4xjhikKmt0w",
-    authDomain: "cat-with-a-hat.firebaseapp.com",
-    databaseURL: "https://cat-with-a-hat.firebaseio.com",
-    projectId: "cat-with-a-hat",
-    storageBucket: "cat-with-a-hat.appspot.com",
-    messagingSenderId: "327642713901"
-  };
+var Config = config;
 
 class Firebase {
   constructor() {
-    app.initializeApp(config);
+    app.initializeApp(Config);
 
     this.auth = app.auth();
     this.db = app.database();
@@ -45,7 +29,7 @@ class Firebase {
     this.auth.signInWithPopup(this.googleProvider);
 
   doSignInWithFacebook = () =>
-   this.auth.signInWithPopup(this.facebookProvider);
+    this.auth.signInWithPopup(this.facebookProvider);
 
   doSignOut = () => this.auth.signOut();
 
@@ -55,9 +39,9 @@ class Firebase {
     this.auth.currentUser.updatePassword(password);
 
   // *** Merge Auth and DB User API *** //
-    onAuthUserListener = (next, fallback) =>
-      this.auth.onAuthStateChanged(authUser => {
-        if (authUser) {
+  onAuthUserListener = (next, fallback) =>
+    this.auth.onAuthStateChanged(authUser => {
+      if (authUser) {
         this.user(authUser.uid)
           .once('value')
           .then(snapshot => {
@@ -65,7 +49,7 @@ class Firebase {
 
             // default empty roles
             if (!dbUser.roles) {
-            dbUser.roles = [];
+              dbUser.roles = [];
             }
             // merge auth and db user
             authUser = {
@@ -77,10 +61,10 @@ class Firebase {
             next(authUser);
           });
 
-    } else {
-       fallback();
-    }
-  });
+      } else {
+        fallback();
+      }
+    });
 
   // *** User API ***
 

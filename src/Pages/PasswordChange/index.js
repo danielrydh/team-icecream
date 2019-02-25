@@ -1,6 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import Button from '../../components/UI/Button';
+import { UIRow, Input, Form, StyledLink } from '../../GeneralStyles';
 import { withFirebase } from '../Firebase';
+import { Text } from '../../components/UI/TextComponent';
+import * as ROUTES from '../../constants/routes';
 
 const INITIAL_STATE = {
   passwordOne: '',
@@ -20,6 +23,15 @@ class PasswordChangeForm extends Component {
 
     this.props.firebase
       .doPasswordUpdate(passwordOne)
+      //.then(authUser => {
+      // Create a user in your Firebase realtime database
+      // this.props.firebase
+      //   .user(authUser.user.uid)
+      //   .set({
+      //     username,
+      //     email,
+      //     roles,
+      //   })
       .then(() => {
         this.setState({ ...INITIAL_STATE });
       })
@@ -41,26 +53,35 @@ class PasswordChangeForm extends Component {
       passwordOne !== passwordTwo || passwordOne === '';
 
     return (
-      <form onSubmit={this.onSubmit}>
-        <input
-          name="passwordOne"
-          value={passwordOne}
-          onChange={this.onChange}
-          type="password"
-          placeholder="New Password"
-        />
-        <input
-          name="passwordTwo"
-          value={passwordTwo}
-          onChange={this.onChange}
-          type="password"
-          placeholder="Confirm New Password"
-        />
-        <Button disabled={isInvalid} type="submit" value="reset-my-password" text="Reset My Password" fullW margin />
-        
+      <Fragment>
+        <UIRow height="60%" style={{ paddingTop: '150px' }} flex center >
+          <Form onSubmit={this.onSubmit}>
+            <Input
+              name="passwordOne"
+              value={passwordOne}
+              onChange={this.onChange}
+              type="password"
+              placeholder="New Password"
+            />
+            <Input
+              name="passwordTwo"
+              value={passwordTwo}
+              onChange={this.onChange}
+              type="password"
+              placeholder="Confirm New Password"
+            />
+            <Button disabled={isInvalid} type="submit" value="reset-my-password" text="Reset My Password" fullW margin />
 
-        {error && <p>{error.message}</p>}
-      </form>
+
+            {error && <p>{error.message}</p>}
+          </Form>
+        </UIRow>
+        <UIRow style={{ height: "10%", paddingTop: "20px" }} flex row center>
+          <StyledLink to={ROUTES.SIGN_IN}>
+            <Text gold>Back</Text>
+          </StyledLink>
+        </UIRow>
+      </Fragment>
     );
   }
 }
