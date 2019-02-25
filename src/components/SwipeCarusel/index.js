@@ -2,7 +2,8 @@ import React from 'react';
 import ReactSwipe from 'react-swipe';
 import hats from '../../constants/hats';
 import cats from '../../constants/cats';
-import { NextBtn, Icon } from '../../components/UI/SpeakingBubble/styles';
+import { NextBtn } from '../../components/UI/SpeakingBubble/styles';
+import { ArrowNext, ArrowPrevious, Icon } from '../../components/UI/CreateCatStyles/styles';
 import ui from '../../constants/ui';
 
 const Carousel = ({ data, cats, ...rest }) => {
@@ -29,8 +30,13 @@ const Carousel = ({ data, cats, ...rest }) => {
           );
         })}
       </ReactSwipe>
-      <button onClick={() => reactSwipeEl.next()}>Next</button>
-      <button onClick={() => reactSwipeEl.prev()}>Previous</button>
+      <ArrowPrevious onClick={() => reactSwipeEl.prev()}>
+        <img src={ui.icons.arrow_small} />
+      </ArrowPrevious>
+      <ArrowNext onClick={() => reactSwipeEl.next()}>
+        <img src={ui.icons.arrow_thin} />
+      </ArrowNext>
+
       <ReactSwipe
         className="carousel"
         swipeOptions={{ continuous: false }}
@@ -49,9 +55,13 @@ const Carousel = ({ data, cats, ...rest }) => {
           );
         })}
       </ReactSwipe>
-      <button onClick={() => reactSwipeEl2.next()}>Next</button>
-      <button onClick={() => reactSwipeEl2.prev()}>Previous</button>
-    </div>
+      <ArrowPrevious onClick={() => reactSwipeEl2.prev()}>
+        <img src={ui.icons.arrow_small} />
+      </ArrowPrevious>
+      <ArrowNext onClick={() => reactSwipeEl2.next()}>
+        <img src={ui.icons.arrow_thin} />
+      </ArrowNext>
+    </div >
   );
 };
 
