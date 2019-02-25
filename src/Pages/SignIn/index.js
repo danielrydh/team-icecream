@@ -26,10 +26,10 @@ const SignInPage = () => (
 const INITIAL_STATE = {
   email: '',
   password: '',
-
+  isSignedIn: false,
   error: null,
 };
-
+//this.setState({ someProperty: { ...this.state.someProperty, flag: false} });
 
 class SignInFormBase extends Component {
 
@@ -45,6 +45,7 @@ class SignInFormBase extends Component {
     this.props.firebase
       .doSignInWithEmailAndPassword(email, password)
       .then(() => {
+        //this.setState({ INITIAL_STATE: { ...INITIAL_STATE, isSignedIn: true } });
         this.setState({ ...INITIAL_STATE });
         this.props.history.push(ROUTES.MAP);
       })

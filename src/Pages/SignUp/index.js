@@ -66,7 +66,10 @@ class SignUpFormBase extends Component {
             username,
             email,
             roles,
-            position: { latitude: "0", longitude: "0" }
+            position: { latitude: "0", longitude: "0" },
+            isLoggedIn: false
+            //katt,
+            //hat
           })
           .then(() => {
             this.setState({ ...INITIAL_STATE });

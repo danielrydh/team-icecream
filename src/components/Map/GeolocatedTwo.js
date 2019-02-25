@@ -3,6 +3,7 @@ import { Map, TileLayer, Marker, Popup, Tooltip } from "react-leaflet";
 import cats from '../../constants/cats';
 import L from 'leaflet';
 
+
 const grey_cat = L.icon({
     iconUrl: cats.grey.idle,
     iconSize: [35, 35], // size of the icon
@@ -16,7 +17,8 @@ class LocatedTwo extends Component {
         this.state = {
             browserCoords: null,
             dbCoords: null,
-            currentUser: null
+            currentUser: null,
+            markers: []
 
         };
     }
@@ -38,16 +40,20 @@ class LocatedTwo extends Component {
     };
 
     updatePosition = position => {
+        console.log("YO");
+        //this.getAllUserPositionsFromDB();
         this.setState({
             browserCoords: {
                 latitude: position.coords.latitude,
                 longitude: position.coords.longitude
             }
         });
+        console.log("position.coords:" + position.coords + " dbCOords: " + this.state.dbCoords);
         if (position.coords && this.state.dbCoords) {
             const { latitude: lat1, longitude: lng1 } = position.coords;
             const { latitude: lat2, longitude: lng2 } = this.state.dbCoords;
             const dist = this.calculateDistance(lat1, lng1, lat2, lng2);
+            console.log("dist: " + dist);
             if (dist > 1) {
                 this.writeUserPositionToDB(position.coords);
             }
@@ -60,9 +66,12 @@ class LocatedTwo extends Component {
             .child("position")
             .on("value", snapshot => { //if we want to see all users... we have to use .on()
                 const userPosition = snapshot.val();
-                console.log(JSON.parse(JSON.stringify(userPosition)));
+                //console.log(JSON.parse(JSON.stringify(userPosition)));
                 this.setState({ dbCoords: userPosition });
+                //this.updatePosition(userPosition);
+
             });
+
     };
 
     // getUserDataFromDB = () => {
@@ -70,10 +79,30 @@ class LocatedTwo extends Component {
     //         .user(this.props.userId)
     //         .on("value", snapshot => { //if we want to see all users... we have to use .on()
     //             const userData = snapshot.val();
-    //             console.log(JSON.parse(JSON.stringify(userData)));
+    //             //console.log(JSON.parse(JSON.stringify(userData)));
     //             this.setState({ db: userData });
     //         });
     // };
+
+
+    getAllUserPositionsFromDB = () => {
+        this.props.firebase
+            .users().on('value', snapshot => {
+                const usersObject = snapshot.val();
+                const usersList = Object.keys(usersObject).map(key => ({
+                    ...usersObject[key],
+                    uid: key,
+                }));
+                //const userMarkers = usersList.filter(user => (user.hasOwnProperty('position'))).map(user => ({ ...user.position, name: user.username }));
+                const userMarkers = usersList.filter(user => (user.isLoggedIn)).map(user => ({ ...user.position, name: user.username }));
+                this.setState({
+                    markers: userMarkers,
+                });
+
+            });
+
+        // get other stuff
+    }
 
     getUserNameFromDB = () => {
         this.props.firebase
@@ -81,7 +110,7 @@ class LocatedTwo extends Component {
             .child("username")
             .on("value", snapshot => {
                 const userName = snapshot.val();
-                console.log(JSON.parse(JSON.stringify(userName)));
+                //console.log(JSON.parse(JSON.stringify(userName)));
                 this.setState({ currentUser: userName });
             });
     };
@@ -91,15 +120,19 @@ class LocatedTwo extends Component {
 
         this.props.firebase
             .user(this.props.userId)
-            .update({ position: { latitude: latitude, longitude: longitude } });
+            .update({ position: { latitude: latitude, longitude: longitude }, isLoggedIn: true });
         //this.setState({ dbCoords: position });
         this.getUserPositionFromDB();
     };
 
     componentDidMount() {
+        this.props.firebase
+            .user(this.props.userId)
+            .update({ isLoggedIn: true });
         this.getUserPositionFromDB();
         this.getUserNameFromDB();
-        // this.getUserDataFromDB();
+        this.getAllUserPositionsFromDB();
+        //this.getUserDataFromDB();
 
         this.watchId = navigator.geolocation.watchPosition(
             this.updatePosition,
@@ -116,17 +149,20 @@ class LocatedTwo extends Component {
     }
     componentWillUnmount() {
         navigator.geolocation.clearWatch(this.watchId);
+        this.props.firebase
+            .user(this.props.userId)
+            .update({ isLoggedIn: false });
     }
 
     render() {
+
         const markers = [
             // { latitude: 59.316607, longitude: 18.034689 },
             // { latitude: 59.307496, longitude: 17.985272 },
-            // { latitude: 59.305496, longitude: 17.985272 }
+            // { latitude: 59.305496, longitude: 17.985272, name: 'Moitrayee' }
         ];
-        markers.push(this.state.browserCoords);
-
-
+        markers.push(...this.state.markers);
+        //markers.push({ ...this.state.browserCoords, name: this.state.currentUser });
 
 
         return (
@@ -135,7 +171,6 @@ class LocatedTwo extends Component {
                     <MyMap
                         markers={markers}
                         position={Object.values(this.state.browserCoords)}
-                        name={this.state.currentUser}
                         zoom={13}
                     />
                 ) : null}
@@ -173,9 +208,9 @@ const MyMap = props => (
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
         />
-        {props.markers.map(marker => (
-            <Marker position={Object.values(marker)} icon={grey_cat} >
-                <Tooltip>{props.name}</Tooltip>
+        {props.markers.map((marker, index) => (
+            <Marker key={index} position={Object.values(marker)} icon={grey_cat} >
+                <Tooltip>{marker.name}</Tooltip>
             </Marker>
         ))}
     </Map>
