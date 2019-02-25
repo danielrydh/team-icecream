@@ -11,6 +11,7 @@ import 'firebase/auth';
 import 'firebase/database';
 import Popup from 'reactjs-popup';
 import './popUp.css';
+import cats from '../../constants/cats';
 
 
 
@@ -67,13 +68,13 @@ class SignUpFormBase extends Component {
             email,
             roles,
             position: { latitude: "0", longitude: "0" },
-            isLoggedIn: false
-            //katt,
-            //hat
+            //marker: { cat: cats.orange.idle, hat: " " },
+            isLoggedIn: false,
+
           })
           .then(() => {
             this.setState({ ...INITIAL_STATE });
-            this.props.history.push(ROUTES.TUTORIAL);
+            this.props.history.push(ROUTES.CREATE_CAT);
           })
           .catch(error => {
             this.setState({ error });

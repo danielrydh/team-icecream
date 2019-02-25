@@ -94,7 +94,7 @@ class LocatedTwo extends Component {
                     uid: key,
                 }));
                 //const userMarkers = usersList.filter(user => (user.hasOwnProperty('position'))).map(user => ({ ...user.position, name: user.username }));
-                const userMarkers = usersList.filter(user => (user.isLoggedIn)).map(user => ({ ...user.position, name: user.username }));
+                const userMarkers = usersList.filter(user => (user.isLoggedIn)).map(user => ({ ...user.position, name: user.username /*, icon: user.marker*/ }));
                 this.setState({
                     markers: userMarkers,
                 });
