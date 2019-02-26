@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const Fieldset = styled.fieldset`
 border: 0;
 padding-left: 0;
+padding-right: 0;
 
 
 /*@media screen and (min-width: 600px) {
@@ -22,11 +23,28 @@ padding-left: 0;
 export const Input = styled.input`
 ${p => p.fullW ? ' width: 100%' : null};
 ${p => p.margin ? ' margin-bottom: 1rem;' : null};
-padding: 1rem;
+${p => p.flex ? `display: flex;` : null};
+${p => p.row ? 'flex-direction: row' : 'flex-direction: column'};
 
-font-weight: 600;
-font-family: 'Press Start 2P', cursive;
+${p => p.center ? `justify-content: center;` : null}
+ 
+padding: 1rem;
+/* font-family: 'Press Start 2P', cursive; */
 font-size: 1.25em;
 
-color: #fff;
+color: black;
+text-transform: uppercase;
+
+@media screen and (min-width: 600px) {
+    ${p => p.fullW
+    ? `
+      width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+    `
+    : null}
+
+  } 
+
+
 `;

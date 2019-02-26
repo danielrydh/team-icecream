@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Button from '../../components/UI/Button';
-import { Fieldset } from './style';
-import { Input, StyledLink } from '../../GeneralStyles';
+import { Fieldset, Input } from './style';
+import { StyledLink } from '../../GeneralStyles';
 import * as ROUTES from '../../constants/routes';
 import 'firebase/auth';
 import 'firebase/database';
@@ -63,15 +63,18 @@ class Form extends Component {
       <form onSubmit={this.handleSubmit} >
         <Fieldset>
           <Input
-            style={{ width: '300px', background: 'white', color: 'black', textTransform: ' uppercase' }}
             type="text"
             placeholder="WRITE YOUR DISPLAY NAME HERE"
             value={displayName}
-            onChange={this.handleChange} />
+            onChange={this.handleChange}
+            flex
+            row
+            fullW
+            margin
+          />
         </Fieldset>
         <StyledLink to={ROUTES.MAP}>
           <Button
-            style={{ height: "40px", background: 'transparent', color: 'hsla(45,86%,55%,1)' }}
             type="submit"
             value="submit"
             text="START"
