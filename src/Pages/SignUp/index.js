@@ -3,12 +3,12 @@ import { /*Link,*/ withRouter } from 'react-router-dom';
 import { Text } from '../../components/UI/TextComponent';
 import { UIRow, StyledLink, Input, Form, Span } from '../../GeneralStyles';
 import Button from '../../components/UI/Button';
-import { withFirebase } from '../Firebase';
 import { compose } from 'recompose';
 import * as ROUTES from '../../constants/routes';
 import * as ROLES from '../../constants/roles';
 import 'firebase/auth';
 import 'firebase/database';
+import { withFirebase } from '../Firebase';
 import Popup from 'reactjs-popup';
 import './popUp.css';
 import cats from '../../constants/cats';
@@ -22,7 +22,9 @@ const INITIAL_STATE = {
   passwordTwo: '',
   isAdmin: false,
   error: null,
+  displayName: ''
 };
+
 const SignInPage = () => (
   <div>
 
@@ -50,7 +52,7 @@ class SignUpFormBase extends Component {
   };
 
   onSubmit = event => {
-    const { username, email, passwordOne, isAdmin } = this.state;
+    const { username, email, passwordOne, isAdmin, displayName } = this.state;
 
     const roles = [];
     if (isAdmin) {
@@ -68,9 +70,8 @@ class SignUpFormBase extends Component {
             email,
             roles,
             position: { latitude: "0", longitude: "0" },
-            //marker: { cat: cats.orange.idle, hat: " " },
             isLoggedIn: false,
-
+            displayName
           })
           .then(() => {
             this.setState({ ...INITIAL_STATE });
@@ -104,6 +105,7 @@ class SignUpFormBase extends Component {
       passwordTwo,
       isAdmin,
       error,
+      displayName
     } = this.state;
 
     const isInvalid =
