@@ -3,27 +3,32 @@ import Button from '../../components/UI/Button';
 import { Fieldset, Input } from './style';
 import { StyledLink } from '../../GeneralStyles';
 import * as ROUTES from '../../constants/routes';
+import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/database';
-import { withFirebase } from '../Firebase';
+
 import Carousel from '../../components/SwipeCarusel';
 import { hatsArray, catsArray } from './data';
+import Firebase from '../Firebase/firebase';
 
 
 
 class Form extends Component {
   constructor(props) {
     super(props);
-    this.state = { displayName: '' };
+
+    this.state = {
+      displayName: ''
+    };
 
 
 
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    //this.handleSubmit = this.handleSubmit.bind(this);
+
   }
 
-  handleChange(event) {
-    // this.setState({ value: event.target.value });
+  handleChange = event => {
     this.setState({ displayName: event.target.value });
   }
   handleSubmit() {
@@ -31,23 +36,29 @@ class Form extends Component {
     //event.preventDefault();
   }
 
+
+
+
+
   onSubmit = event => {
 
-    this.props.firebase
-      .then(authUser => {
-        // Create a user in your Firebase realtime database
-        this.props.firebase
-          .user(authUser.user.uid)
-          .push().child("displayName").setValue(this.state.displayName)
-          .then(() => {
-            this.setState({ error: null });
-            this.props.history.push(ROUTES.MAP);
+    const { displayName } = this.state;
+    firebase.auth().onAuthStateChanged(function (user) {
+      this.props.firebase
+        .user()
+        .child("displayName")
+        .update({
+          displayName: displayName
+        })
+        .then(() => {
+          this.setState({ error: null });
+          this.props.history.push(ROUTES.MAP);
 
-          })
-          .catch(error => {
-            this.setState({ error });
-          });
-      })
+        })
+        .catch(error => {
+          this.setState({ error });
+        });
+    })
       .catch(error => {
         this.setState({ error });
       });
@@ -58,9 +69,11 @@ class Form extends Component {
 
 
   render() {
+
     const { displayName } = this.state;
+
     return (
-      <form onSubmit={this.handleSubmit} >
+      <form onSubmit={this.onSubmit} >
         <Fieldset>
           <Input
             type="text"
@@ -88,5 +101,6 @@ class Form extends Component {
     )
   }
 }
+
 
 export default Form;

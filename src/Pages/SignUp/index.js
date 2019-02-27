@@ -22,7 +22,7 @@ const INITIAL_STATE = {
   passwordTwo: '',
   isAdmin: false,
   error: null,
-  displayName: ''
+  //displayName: ''
 };
 
 const SignInPage = () => (
@@ -52,7 +52,7 @@ class SignUpFormBase extends Component {
   };
 
   onSubmit = event => {
-    const { username, email, passwordOne, isAdmin, displayName } = this.state;
+    const { username, email, passwordOne, isAdmin, /*displayName*/ } = this.state;
 
     const roles = [];
     if (isAdmin) {
@@ -71,7 +71,7 @@ class SignUpFormBase extends Component {
             roles,
             position: { latitude: "0", longitude: "0" },
             isLoggedIn: false,
-            displayName
+            //displayName: "update"
           })
           .then(() => {
             this.setState({ ...INITIAL_STATE });
@@ -105,7 +105,7 @@ class SignUpFormBase extends Component {
       passwordTwo,
       isAdmin,
       error,
-      displayName
+      //displayName
     } = this.state;
 
     const isInvalid =
@@ -227,6 +227,7 @@ class SignInGoogleBase extends Component {
             email: socialAuthUser.user.email,
             position: socialAuthUser.user.position,
             roles: [],
+            // displayName: socialAuthUser.user.displayName
           })
           .then(() => {
             this.setState({ error: null });
@@ -276,6 +277,7 @@ class SignInFacebookBase extends Component {
             email: socialAuthUser.additionalUserInfo.profile.email,
             position: socialAuthUser.user.position,
             roles: [],
+            displayName: socialAuthUser.user.displayName
           })
           .then(() => {
             this.setState({ error: null });
@@ -304,7 +306,7 @@ class SignInFacebookBase extends Component {
           {error && <p>{error.message}</p>}
         </form>
         <UIRow style={{ height: "10%", paddingTop: "20px" }} flex row center>
-          <StyledLink to={ROUTES.HOME}>
+          <StyledLink to={ROUTES.TUTORIAL}>
             <Text gold>Back</Text>
           </StyledLink>
         </UIRow>

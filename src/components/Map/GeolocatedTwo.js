@@ -40,7 +40,7 @@ class LocatedTwo extends Component {
     };
 
     updatePosition = position => {
-        console.log("YO");
+        //console.log("YO");
         //this.getAllUserPositionsFromDB();
         this.setState({
             browserCoords: {
@@ -48,12 +48,12 @@ class LocatedTwo extends Component {
                 longitude: position.coords.longitude
             }
         });
-        console.log("position.coords:" + position.coords + " dbCOords: " + this.state.dbCoords);
+        //console.log("position.coords:" + position.coords + " dbCOords: " + this.state.dbCoords);
         if (position.coords && this.state.dbCoords) {
             const { latitude: lat1, longitude: lng1 } = position.coords;
             const { latitude: lat2, longitude: lng2 } = this.state.dbCoords;
             const dist = this.calculateDistance(lat1, lng1, lat2, lng2);
-            console.log("dist: " + dist);
+            //console.log("dist: " + dist);
             if (dist > 1) {
                 this.writeUserPositionToDB(position.coords);
             }
@@ -74,16 +74,6 @@ class LocatedTwo extends Component {
 
     };
 
-    // getUserDataFromDB = () => {
-    //     this.props.firebase
-    //         .user(this.props.userId)
-    //         .on("value", snapshot => { //if we want to see all users... we have to use .on()
-    //             const userData = snapshot.val();
-    //             //console.log(JSON.parse(JSON.stringify(userData)));
-    //             this.setState({ db: userData });
-    //         });
-    // };
-
 
     getAllUserPositionsFromDB = () => {
         this.props.firebase
@@ -94,7 +84,7 @@ class LocatedTwo extends Component {
                     uid: key,
                 }));
                 //const userMarkers = usersList.filter(user => (user.hasOwnProperty('position'))).map(user => ({ ...user.position, name: user.username }));
-                const userMarkers = usersList.filter(user => (user.isLoggedIn)).map(user => ({ ...user.position, name: user.username /*, icon: user.marker*/ }));
+                const userMarkers = usersList.filter(user => (user.isLoggedIn)).map(user => ({ ...user.position, name: user.displayName,/*, icon: user.marker*/ }));
                 this.setState({
                     markers: userMarkers,
                 });
