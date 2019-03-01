@@ -5,13 +5,19 @@ import hat2 from './assets/hats/hat2.png';
 import hat3 from './assets/hats/hat3.png';
 import hat4 from './assets/hats/hat4.png';
 import hat5 from './assets/hats/hat5.png';
+import hat1_128x128 from './assets/hats/hat1_128x128.png';
+import hat2_128x128 from './assets/hats/hat2_128x128.png';
+import hat3_128x128 from './assets/hats/hat3_128x128.png';
+import hat4_128x128 from './assets/hats/hat4_128x128.png';
+import hat5_128x128 from './assets/hats/hat5_128x128.png';
 
 
 
 const hats = {
   hat1: {
     name: 'Master Hat',
-    icon: hat1,
+    small_icon: hat1,
+    big_icon: hat1_128x128,
     tier: 2,
     powerup: {
       modifier: 1.25,
@@ -20,7 +26,8 @@ const hats = {
   },
   hat2: {
     name: 'Jumpy hat',
-    icon: hat2,
+    small_icon: hat2,
+    big_icon: hat2_128x128,
     tier: 3,
     powerup: {
       modifier: 1.3,
@@ -29,7 +36,8 @@ const hats = {
   },
   hat3: {
     name: '',
-    icon: hat3,
+    small_icon: hat3,
+    big_icon: hat3_128x128,
     tier: 1,
     powerup: {
       modifier: 1,
@@ -38,7 +46,8 @@ const hats = {
   },
   hat4: {
     name: '',
-    icon: hat4,
+    small_icon: hat4,
+    big_icon: hat4_128x128,
     tier: 1,
     powerup: {
       modifier: 1,
@@ -47,7 +56,8 @@ const hats = {
   },
   hat5: {
     name: '',
-    icon: hat5,
+    small_icon: hat5,
+    big_icon: hat5_128x128,
     tier: 1,
     powerup: {
       modifier: 1,
@@ -55,5 +65,28 @@ const hats = {
     }
   }
 }
+
+/*export const bigHats = {
+  hat1x128: {
+    name: '',
+    hat: hat1_128x128
+  },
+  hat2x128: {
+    name: '',
+    hat: hat2_128x128
+  },
+  hat3x128: {
+    name: '',
+    hat: hat3_128x128
+  },
+  hat4x128: {
+    name: '',
+    hat: hat4_128x128
+  },
+  hat5x128: {
+    name: '',
+    hat: hat5_128x128
+  }
+} */
 
 export default hats;

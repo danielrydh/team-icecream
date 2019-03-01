@@ -58,7 +58,7 @@ const Carousel = ({ data, cats }) => {
           <img src={ui.icons.arrow_thin} alt="next" />
         </ArrowNext>
       </UIRow>
-    </div >
+    </div>
   );
 };
 

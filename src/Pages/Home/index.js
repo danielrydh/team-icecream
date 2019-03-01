@@ -8,12 +8,18 @@ import * as ROUTES from '../../constants/routes';
 
 import Button from '../../components/UI/Button';
 import cats from '../../constants/cats';
+import AutoCarousel from '../../components/AutoSwipeCarusel';
+import { hatsArray } from '../CreateCat/data';
 
 const Home = () => {
   return (
     <Fragment>
       <UIRow height="25%" flex row center>
         <Text heading gold center nomargin>Cats With Hats</Text>
+      </UIRow>
+
+      <UIRow>
+        <AutoCarousel hats={hatsArray} />
       </UIRow>
 
       <UIRow height="50%" flex startCenter>
