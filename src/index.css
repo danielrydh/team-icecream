@@ -35,6 +35,12 @@ code {
 }
 
 .leaflet-container {
-  height: 420px;
-  width: 100%;
+  height: 390px;
+  margin: 0 370px;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
 }
+
+/* height: 420px;
+  width: 100%; */
