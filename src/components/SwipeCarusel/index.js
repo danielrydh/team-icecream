@@ -1,15 +1,11 @@
 import React from 'react';
 import ReactSwipe from 'react-swipe';
-// import hats from '../../constants/hats';
-// import cats from '../../constants/cats';
-// import { NextBtn } from '../../components/UI/SpeakingBubble/styles';
-import { ArrowNext, /*ArrowPrevious,*/ Icon, ArrowThinPrevious } from '../../components/UI/CreateCatStyles/styles';
+import { ArrowNext, Icon, ArrowThinPrevious } from '../../components/UI/CreateCatStyles/styles';
 import ui from '../../constants/ui';
-import { UIImg, UIRow } from '../../GeneralStyles';
+import { UIRow } from '../../GeneralStyles';
 
-const Carousel = ({ data, cats, ...rest }) => {
+const Carousel = ({ data, cats }) => {
   let reactSwipeEl, reactSwipeEl2;
-  //console.log(data);
 
   return (
     <div >
@@ -19,7 +15,6 @@ const Carousel = ({ data, cats, ...rest }) => {
         ref={el => (reactSwipeEl = el)}
       >
         {data.map((icon, index) => {
-          // console.log(icon);
           return (
             <UIRow key={index} flex row center>
               <div className="item">
@@ -46,7 +41,6 @@ const Carousel = ({ data, cats, ...rest }) => {
         ref={el => (reactSwipeEl2 = el)}
       >
         {cats.map((icon, index) => {
-          // console.log(icon);
           return (
             <UIRow key={index} flex row center>
               <div className="item">
@@ -69,14 +63,3 @@ const Carousel = ({ data, cats, ...rest }) => {
 };
 
 export default Carousel;
-
-{/* ursprungskoden om vi vill ha den sen
- <div>
-      <Icon {...rest} key={index} src={icon.icon} />
-    </div>
-{cats.map((icon, index) => {
-  return (
-    
-  );
-})}
-*/}
