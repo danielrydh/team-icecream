@@ -11,7 +11,7 @@ import 'firebase/database';
 import { withFirebase } from '../Firebase';
 import Popup from 'reactjs-popup';
 import './popUp.css';
-import cats from '../../constants/cats';
+
 
 
 
@@ -22,7 +22,7 @@ const INITIAL_STATE = {
   passwordTwo: '',
   isAdmin: false,
   error: null,
-  //displayName: ''
+  displayName: ''
 };
 
 const SignInPage = () => (
@@ -52,7 +52,7 @@ class SignUpFormBase extends Component {
   };
 
   onSubmit = event => {
-    const { username, email, passwordOne, isAdmin, /*displayName*/ } = this.state;
+    const { username, email, passwordOne, isAdmin } = this.state;
 
     const roles = [];
     if (isAdmin) {
@@ -71,7 +71,7 @@ class SignUpFormBase extends Component {
             roles,
             position: { latitude: "0", longitude: "0" },
             isLoggedIn: false,
-            //displayName: "update"
+            displayName: "update"
           })
           .then(() => {
             this.setState({ ...INITIAL_STATE });
@@ -105,7 +105,7 @@ class SignUpFormBase extends Component {
       passwordTwo,
       isAdmin,
       error,
-      //displayName
+
     } = this.state;
 
     const isInvalid =

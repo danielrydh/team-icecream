@@ -1,70 +1,77 @@
 import React, { Component } from 'react';
 import Button from '../../components/UI/Button';
 import { Fieldset, Input } from './style';
-import { StyledLink } from '../../GeneralStyles';
 import * as ROUTES from '../../constants/routes';
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/database';
-
-import Carousel from '../../components/SwipeCarusel';
-import { hatsArray, catsArray } from './data';
-import Firebase from '../Firebase/firebase';
-
+import { withFirebase } from '../Firebase';
+import { compose } from 'recompose';
+import { /*Link,*/ withRouter } from 'react-router-dom';
 
 
-class Form extends Component {
+
+
+
+class FormBase extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      displayName: ''
+      displayName: props.initialValue
     };
 
 
 
     this.handleChange = this.handleChange.bind(this);
     //this.handleSubmit = this.handleSubmit.bind(this);
+    //this.onSubmit = this.onSubmit.bind(this);
 
   }
-
+  ionViewDidLoad() {
+    this.userId = firebase.auth().currentUser.uid
+  };
   handleChange = event => {
     this.setState({ displayName: event.target.value });
   }
-  handleSubmit() {
-    alert(`Welcome to the game  ${this.state.displayName}`);
-    //event.preventDefault();
-  }
+  // handleSubmit() {
+  //   alert(`Welcome to the game  ${this.state.displayName}`);
+  //   //event.preventDefault();
+  // }
 
 
-
-
-
-  onSubmit = event => {
-
+  onSubmit = firebase => {
+    //alert(`Welcome number two to the game  ${this.state.displayName}`);
     const { displayName } = this.state;
-    firebase.auth().onAuthStateChanged(function (user) {
+
+    firebase.auth.onAuthStateChanged(function (user) {
+
       this.props.firebase
-        .user()
-        .child("displayName")
-        .update({
-          displayName: displayName
+        .doUpdateDisplayeNameAndCatNhAt(displayName)
+        .then(authUser => {
+          this.props.firebase
+            .user(this.props.userId)
+            //.child("displayName")
+            .update({
+              "displayName": displayName
+            })
+            .then(() => {
+              this.setState({ error: null });
+              this.props.history.push(ROUTES.MAP);
+            })
+            .catch(error => {
+              this.setState({ error });
+            });
         })
-        .then(() => {
-          this.setState({ error: null });
-          this.props.history.push(ROUTES.MAP);
-
-        })
-        .catch(error => {
-          this.setState({ error });
-        });
     })
-      .catch(error => {
-        this.setState({ error });
-      });
+    // .catch(error => {
+    //   this.setState({ error });
+    // });
 
-    event.preventDefault();
+    //event.preventDefault();
   };
+
+
 
 
 
@@ -73,7 +80,8 @@ class Form extends Component {
     const { displayName } = this.state;
 
     return (
-      <form onSubmit={this.onSubmit} >
+
+      <form onSubmit={this.onSubmit}>
         <Fieldset>
           <Input
             type="text"
@@ -86,21 +94,25 @@ class Form extends Component {
             margin
           />
         </Fieldset>
-        <StyledLink to={ROUTES.MAP}>
-          <Button
-            type="submit"
-            value="submit"
-            text="START"
-            onClick={() => this.handleSubmit()}
-            fullW
-            margin
-            center
-          />
-        </StyledLink>
+        {/* <StyledLink to={ROUTES.MAP}> */}
+        <Button
+          type="submit"
+          value={displayName}
+          text="START"
+          // onClick={() => this.handleSubmit()}
+          fullW
+          margin
+          center
+        />
+        {/* </StyledLink> */}
       </form>
+
     )
   }
 }
 
-
+const Form = compose(
+  withRouter,
+  withFirebase,
+)(FormBase);
 export default Form;

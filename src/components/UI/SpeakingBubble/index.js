@@ -9,7 +9,7 @@ const SpeakingBubble = ({ content, height, ...rest }) => (
       : <Icon {...rest} key={index} src={content} />
     )}
     <NextBtn>
-      <Paragraph noMargin scale="1.2">Next</Paragraph>
+      <Paragraph noMargin scale="1.2" >Next</Paragraph>
       <Icon noMargin src={ui.icons.arrow_large} scale="0.8" />
     </NextBtn>
     <SpeakingThing src={ui.icons.speaking_thing} />

@@ -3,6 +3,7 @@ import 'firebase/auth';
 import 'firebase/database';
 import { config } from '../../key';
 
+
 var Config = config;
 
 class Firebase {
@@ -38,6 +39,9 @@ class Firebase {
   doPasswordUpdate = password =>
     this.auth.currentUser.updatePassword(password);
 
+  doUpdateDisplayeNameAndCatNhAt = displayName =>
+    this.auth.currentUser.doUpdateDisplayeNameAndCatNhAt(displayName);
+
   // *** Merge Auth and DB User API *** //
   onAuthUserListener = (next, fallback) =>
     this.auth.onAuthStateChanged(authUser => {
@@ -71,6 +75,9 @@ class Firebase {
   user = uid => this.db.ref(`users/${uid}`);
 
   users = () => this.db.ref('users');
+
+  hat = uid => this.db.ref(`hats/${uid}`);
+
 
   hats = () => this.db.ref('hats');
 }
