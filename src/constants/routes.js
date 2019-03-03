@@ -11,3 +11,4 @@ export const PASSWORD_FORGET = '/password_change';
 export const ACCOUNT = '/Account';
 export const CREATE_PROFILE = '/createprofile';
 export const CREATE_CAT = '/create-your-cat';
+export const GAME_MAP = '/game-map';
