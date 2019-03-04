@@ -9,10 +9,6 @@ import { withFirebase } from '../Firebase';
 import { compose } from 'recompose';
 import { /*Link,*/ withRouter } from 'react-router-dom';
 
-
-
-
-
 class FormBase extends Component {
   constructor(props) {
     super(props);
@@ -21,66 +17,25 @@ class FormBase extends Component {
       displayName: props.initialValue
     };
 
-
-
-    this.handleChange = this.handleChange.bind(this);
-    //this.handleSubmit = this.handleSubmit.bind(this);
-    //this.onSubmit = this.onSubmit.bind(this);
-
   }
-  ionViewDidLoad() {
-    this.userId = firebase.auth().currentUser.uid
-  };
+
   handleChange = event => {
     this.setState({ displayName: event.target.value });
   }
-  // handleSubmit() {
-  //   alert(`Welcome to the game  ${this.state.displayName}`);
-  //   //event.preventDefault();
-  // }
 
-
-  onSubmit = firebase => {
-    //alert(`Welcome number two to the game  ${this.state.displayName}`);
+  onSubmit = event => {
     const { displayName } = this.state;
-
-    firebase.auth.onAuthStateChanged(function (user) {
-
-      this.props.firebase
-        .doUpdateDisplayeNameAndCatNhAt(displayName)
-        .then(authUser => {
-          this.props.firebase
-            .user(this.props.userId)
-            //.child("displayName")
-            .update({
-              "displayName": displayName
-            })
-            .then(() => {
-              this.setState({ error: null });
-              this.props.history.push(ROUTES.MAP);
-            })
-            .catch(error => {
-              this.setState({ error });
-            });
-        })
-    })
-    // .catch(error => {
-    //   this.setState({ error });
-    // });
-
-    //event.preventDefault();
+    this.props.firebase.user(this.props.userId).update({
+      displayName
+    });
+    this.props.history.push(ROUTES.MAP)
+    event.preventDefault();
   };
 
 
-
-
-
   render() {
-
     const { displayName } = this.state;
-
     return (
-
       <form onSubmit={this.onSubmit}>
         <Fieldset>
           <Input
@@ -97,7 +52,6 @@ class FormBase extends Component {
         {/* <StyledLink to={ROUTES.MAP}> */}
         <Button
           type="submit"
-          value={displayName}
           text="START"
           // onClick={() => this.handleSubmit()}
           fullW

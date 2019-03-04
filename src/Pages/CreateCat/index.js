@@ -3,6 +3,7 @@ import { UIRow } from '../../GeneralStyles';
 
 //import cats from '../../constants/cats';
 import { /*NextBtn,*/ Paragraph } from '../../components/UI/SpeakingBubble/styles';
+import { AuthUserContext } from "../../Pages/Session";
 
 //import ui from '../../constants/ui';
 import Carousel from '../../components/SwipeCarusel';
@@ -23,7 +24,11 @@ const CreateCat = (props) => {
         <Carousel data={hatsArray} cats={catsArray} />
       </UIRow>
       <UIRow flex center>
-        <Form />
+        <AuthUserContext.Consumer>
+          {authUser => (
+            <Form userId={authUser.uid} />
+          )}
+        </AuthUserContext.Consumer>
       </UIRow>
 
     </Fragment>
