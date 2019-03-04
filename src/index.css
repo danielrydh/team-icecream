@@ -35,8 +35,8 @@ code {
 }
 
 .leaflet-container {
-  height: 390px;
-  margin: 0 370px;
+  height: 420px;
+  width: 100%;
   display: flex;
   justify-content: center;
   flex-direction: row;

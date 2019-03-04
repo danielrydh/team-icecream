@@ -20,8 +20,6 @@ const ChangesHats = ({ hats }) => {
             <UIRow key={index} flex row center>
               <div className="item">
                 <UIImg src={hat.big_icon} />
-
-
               </div>
             </UIRow>
           );
