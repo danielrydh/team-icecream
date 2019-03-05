@@ -1,30 +1,28 @@
 import React, { Fragment } from 'react';
-import { StyledLink, UIRow } from '../../GeneralStyles';
-import { Text } from '../../components/UI/TextComponent';
-import * as ROUTES from '../../constants/routes';
-import '../Firebase/firebase';
+import { UIImg, UIRow } from '../../GeneralStyles';
+import { hatsArray } from '../CreateCat/data';
+import ChangesHats from './changeshats';
 import MapPage from '../../components/Map/Map';
-import '../../index.css';
+import ui from '../../constants/ui';
 
-
-
-
-
-
-const MapView = () => {
+const Map = () => {
   return (
-    <Fragment>
-      <UIRow height="calc(100% - 134px)" noPadding relative>
+    <Fragment  >
+      <UIRow height="25%">
+        <ChangesHats hats={hatsArray} />
+      </UIRow>
+
+      <UIRow >
         <MapPage />
       </UIRow>
-      <UIRow height="40px" flex endCenter backgroundLight>
-        <StyledLink to={ROUTES.HOME}>
-          <Text tyle={{ paddingBottom: '26px' }} gold>Back</Text>
-        </StyledLink>
-      </UIRow>
 
-    </Fragment >
+      <UIRow flex row center>
+        <UIImg src={ui.icons.settings} />
+        <UIImg src={ui.icons.stats} />
+        <UIImg src={ui.icons.history} />
+        <UIImg src={ui.icons.leaderboard} />
+      </UIRow>
+    </Fragment>
   );
 }
-
-export default MapView;
+export default Map;

@@ -19,7 +19,6 @@ import Navigation from '../../Pages/Navigation';
 import { withAuthentication } from '../../Pages/Session';
 //import { PasswordForgetLink } from '../../Pages/PasswordForgot';
 import PasswordChange from '../../Pages/PasswordChange';
-import GameMap from '../../Pages/GameMap';
 
 
 
@@ -38,8 +37,6 @@ const App = () => (
         <Route path={ROUTES.Admin} component={Admin} />
         <Route path={ROUTES.PASSWORD_FORGET} component={PasswordChange} />
         <Route path={ROUTES.CREATE_CAT} component={CreateCat} />
-        <Route path={ROUTES.GAME_MAP} component={GameMap} />
-        {/* <Route path={ROUTES.PROFILE_PAGE} component={ProfilePage} /> */}
       </Container>
     </Router>
   </div>

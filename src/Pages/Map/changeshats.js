@@ -1,9 +1,8 @@
 import React from 'react';
 import ReactSwipe from 'react-swipe';
-import { ArrowNext, Icon, ArrowThinPrevious } from '../../components/UI/CreateCatStyles/styles';
+import { ArrowNext, ArrowThinPrevious } from '../../components/UI/CreateCatStyles/styles';
 import ui from '../../constants/ui';
 import { UIRow, UIImg } from '../../GeneralStyles';
-import hats from '../../constants/hats';
 
 const ChangesHats = ({ hats }) => {
   let reactSwipeEl;
