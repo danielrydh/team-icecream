@@ -16,7 +16,7 @@ import Button from '../../components/UI/Button';
 import { Text } from '../../components/UI/TextComponent';
 import { SignInGoogle, SignInFacebook } from '../SignUp/index';
 import { PasswordForgetLink } from '../../Pages/PasswordForgot';
-import { UIRow, StyledLink, Input, Form } from '../../GeneralStyles';
+import { UIRow, Input, Form } from '../../GeneralStyles';
 
 // Constants 
 import * as ROLES from '../../constants/roles';
@@ -49,17 +49,22 @@ class SignInFormBase extends Component {
       .doSignInWithGoogle()
       .then(socialAuthUser => {
 
-        if (socialAuthUser.additionalUserInfo.isNewUser()) {
+        const {
+          user: { uid, displayName, email },
+          additionalUserInfo: { isNewUser }
+        } = socialAuthUser;
+
+        if (isNewUser) {
           // If new user => Create a user new user and redirect to TUTORIAL
           this.props.firebase
-            .user(socialAuthUser.user.uid)
+            .user(uid)
             .set({
-              username: socialAuthUser.user.displayName,
-              email: socialAuthUser.user.email,
+              username: displayName,
+              email: email,
               position: { latitude: "0", longitude: "0" },
               roles: [ROLES.PLAYER],
               displayName: "update",
-              isLoggedIn: false
+              isLoggedIn: false,
             })
             .then(() => {
               this.setState({ error: null });

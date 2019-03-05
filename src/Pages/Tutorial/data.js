@@ -17,7 +17,7 @@ export const tutorial_page_2 = [
 
 export const tutorial_page_3 = [
   {
-    content: cats.light_brown.idle,
+    content: cats[0].animations.idle,
     type: 'icon'
   },
   {
@@ -25,7 +25,7 @@ export const tutorial_page_3 = [
     type: 'text'
   },
   {
-    content: hats.hat5.icon,
+    content: hats[3].icon,
     type: 'icon'
   },
   {

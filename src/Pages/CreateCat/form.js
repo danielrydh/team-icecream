@@ -8,6 +8,12 @@ import { withFirebase } from '../Firebase';
 import { compose } from 'recompose';
 import { withRouter } from 'react-router-dom';
 
+const formStyles = {
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+}
+
 class FormBase extends Component {
   constructor(props) {
     super(props);
@@ -35,17 +41,20 @@ class FormBase extends Component {
   render() {
     const { displayName } = this.state;
     return (
-      <form onSubmit={this.onSubmit}>
+      <form style={formStyles} onSubmit={this.onSubmit}>
         <Fieldset>
           <Input
             type="text"
-            placeholder="WRITE YOUR DISPLAY NAME HERE"
+            placeholder="Cat name"
             value={displayName}
             onChange={this.handleChange}
             flex
             row
             fullW
             margin
+            maxLength="15"
+
+            style={{ textAlign: 'center' }}
           />
         </Fieldset>
         {/* <StyledLink to={ROUTES.MAP}> */}

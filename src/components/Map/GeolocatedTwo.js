@@ -1,11 +1,11 @@
 import React, { Component, Fragment } from "react";
-import { Map, TileLayer, Marker, Popup, Tooltip } from "react-leaflet";
+import { Map, TileLayer, Marker, Tooltip } from "react-leaflet";
 import cats from '../../constants/cats';
 import L from 'leaflet';
 
 
 const grey_cat = L.icon({
-  iconUrl: cats.grey.idle,
+  iconUrl: cats.find(cat => cat.name === 'grey').animations.idle,
   iconSize: [35, 35], // size of the icon
   //iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
   //tooltipAnchor: [-3, -76] // point from which the popup should open relative to the iconAnchor

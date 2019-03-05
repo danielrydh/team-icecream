@@ -4,7 +4,7 @@ import SpeakingBubble from '../../components/UI/SpeakingBubble';
 
 import { withRouter } from 'react-router-dom';
 
-import cats from '../../constants/cats';
+import cats, { randomCat } from '../../constants/cats';
 
 import { NextBtn, Paragraph, Icon } from '../../components/UI/SpeakingBubble/styles';
 
@@ -43,7 +43,7 @@ class Tutorial extends Component {
         </UIRow>
 
         <UIRow height="25%" flex row startCenter>
-          <Icon src={cats.grey.idle} scale="2.5" />
+          <Icon src={randomCat(cats)} scale="2.5" />
           <NextBtn onClick={() => this.handleSkip()}>
             <Paragraph light noMargin >Skip</Paragraph>
             <Icon noMargin src={ui.icons.arrow_large} scale="0.8" />

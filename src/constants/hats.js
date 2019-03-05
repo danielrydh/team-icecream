@@ -7,9 +7,8 @@ import hat4 from './assets/hats/hat4.png';
 import hat5 from './assets/hats/hat5.png';
 
 
-
-const hats = {
-  hat1: {
+const hats = [
+  {
     name: 'Master Hat',
     icon: hat1,
     tier: 2,
@@ -18,7 +17,7 @@ const hats = {
       type: 'speed'
     }
   },
-  hat2: {
+  {
     name: 'Jumpy hat',
     icon: hat2,
     tier: 3,
@@ -27,8 +26,8 @@ const hats = {
       type: 'jump'
     }
   },
-  hat3: {
-    name: '',
+  {
+    name: 'Wierd hat',
     icon: hat3,
     tier: 1,
     powerup: {
@@ -36,8 +35,8 @@ const hats = {
       type: null
     }
   },
-  hat4: {
-    name: '',
+  {
+    name: 'Cool hat',
     icon: hat4,
     tier: 1,
     powerup: {
@@ -45,8 +44,8 @@ const hats = {
       type: null
     }
   },
-  hat5: {
-    name: '',
+  {
+    name: 'Epic hat',
     icon: hat5,
     tier: 1,
     powerup: {
@@ -54,6 +53,6 @@ const hats = {
       type: null
     }
   }
-}
+]
 
 export default hats;
