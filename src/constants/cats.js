@@ -16,7 +16,8 @@ import orange_idle from './assets/cats/orange/cat_idle.gif'
 
 const cats = {
   brown: {
-    idle: brown_idle
+    idle: brown_idle,
+    name: "brown"
   },
   light_brown: {
     idle: light_brown_idle

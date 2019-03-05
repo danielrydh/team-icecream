@@ -8,23 +8,22 @@ import Form from './form';
 
 class Cat extends Component {
 
-    render() {
-        return (
-            <div>
-
-                <AuthUserContext.Consumer>
-                    {authUser => (
-                        <Form userId={authUser.uid} firebase={this.props.firebase} />
-                    )}
-                </AuthUserContext.Consumer>
-            </div>
-        );
-    }
+  render() {
+    return (
+      <div>
+        <AuthUserContext.Consumer>
+          {authUser => (
+            <Form userId={authUser.uid} firebase={this.props.firebase} />
+          )}
+        </AuthUserContext.Consumer>
+      </div>
+    );
+  }
 }
 
 const condition = authUser => !!authUser;
 
 export default compose(
-    withFirebase,
-    withAuthorization(condition)
+  withFirebase,
+  withAuthorization(condition)
 )(Cat);

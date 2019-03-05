@@ -1,7 +1,7 @@
 import React, { Fragment, Component } from 'react';
-import { /*Link,*/ withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { Text } from '../../components/UI/TextComponent';
-import { UIRow, StyledLink, Input, Form, Span } from '../../GeneralStyles';
+import { UIRow, StyledLink, Input, Form } from '../../GeneralStyles';
 import Button from '../../components/UI/Button';
 import { compose } from 'recompose';
 import * as ROUTES from '../../constants/routes';
@@ -20,7 +20,6 @@ const INITIAL_STATE = {
   email: '',
   passwordOne: '',
   passwordTwo: '',
-  isAdmin: false,
   error: null,
   displayName: ''
 };
@@ -31,8 +30,7 @@ const SignInPage = () => (
     <SignUpForm />
     <SignInGoogle />
     <SignInFacebook />
-    {/* <PasswordForgetLink />
-    <SignUpLink /> */}
+
   </div>
 );
 
@@ -44,20 +42,12 @@ class SignUpFormBase extends Component {
 
   }
 
-
-
-
   location = ({ Located }) => {
     Located.updateUserPosition();
   };
 
   onSubmit = event => {
-    const { username, email, passwordOne, isAdmin } = this.state;
-
-    const roles = [];
-    if (isAdmin) {
-      roles.push(ROLES.Admin);
-    }
+    const { username, email, passwordOne } = this.state;
 
     this.props.firebase
       .doCreateUserWithEmailAndPassword(email, passwordOne)
@@ -68,14 +58,14 @@ class SignUpFormBase extends Component {
           .set({
             username,
             email,
-            roles,
+            roles: [ROLES.PLAYER],
             position: { latitude: "0", longitude: "0" },
             isLoggedIn: false,
             displayName: "update"
           })
           .then(() => {
             this.setState({ ...INITIAL_STATE });
-            this.props.history.push(ROUTES.CREATE_CAT);
+            this.props.history.push(ROUTES.TUTORIAL);
           })
           .catch(error => {
             this.setState({ error });
@@ -87,7 +77,6 @@ class SignUpFormBase extends Component {
 
     event.preventDefault();
   };
-
 
   onChange = event => {
     this.setState({ [event.target.name]: event.target.value });
@@ -103,7 +92,6 @@ class SignUpFormBase extends Component {
       email,
       passwordOne,
       passwordTwo,
-      isAdmin,
       error,
 
     } = this.state;
@@ -123,7 +111,6 @@ class SignUpFormBase extends Component {
           <Popup className="popup-style" trigger={<Button className="button" value="sign_up_with_email/pw" text="Email/Pw" style={{ marginBottom: '25px' }} fullW margin />} modal>
             {close => (
               <div className="modal">
-                {/* <a className="close" onClick={close}> &times; </a> */}
 
                 <div className="content">
                   <UIRow flex center>
@@ -134,45 +121,31 @@ class SignUpFormBase extends Component {
                         onChange={this.onChange}
                         type="text"
                         placeholder="Full Name"
-
                       />
+
                       <Input
                         name="email"
                         value={email}
                         onChange={this.onChange}
                         type="text"
                         placeholder="Email Address"
-
                       />
+
                       <Input
                         name="passwordOne"
                         value={passwordOne}
                         onChange={this.onChange}
                         type="password"
                         placeholder="Password"
-
                       />
+
                       <Input
                         name="passwordTwo"
                         value={passwordTwo}
                         onChange={this.onChange}
                         type="password"
                         placeholder="Confirm Password"
-
                       />
-                      <label>
-                        <Span> Admin:
-                          <input
-                            name="isAdmin"
-                            type="checkbox"
-                            checked={isAdmin}
-                            onChange={this.onChangeCheckbox}
-                            style={{ width: '20px', height: '20px', marginLeft: '20px' }}
-
-                          />
-                        </Span>
-                      </label>
-
 
                       {error && <p>{error.message}</p>}
                       <Button disabled={isInvalid}
@@ -219,27 +192,42 @@ class SignInGoogleBase extends Component {
     this.props.firebase
       .doSignInWithGoogle()
       .then(socialAuthUser => {
-        // Create a user in your Firebase Realtime Database too
-        this.props.firebase
-          .user(socialAuthUser.user.uid)
-          .set({
-            username: socialAuthUser.user.displayName,
-            email: socialAuthUser.user.email,
-            position: socialAuthUser.user.position,
-            roles: [],
-            // displayName: socialAuthUser.user.displayName
-          })
-          .then(() => {
-            this.setState({ error: null });
-            this.props.history.push(ROUTES.TUTORIAL);
-          })
-          .catch(error => {
-            this.setState({ error });
-          });
+
+        const {
+          additionalUserInfo: {
+            user: {
+              displayName,
+              email,
+              uid
+            },
+            isNewUser
+          }
+        } = socialAuthUser;
+
+        if (isNewUser) {
+          // Create a user in your Firebase Realtime Database too
+          this.props.firebase
+            .user(uid)
+            .set({
+              username: displayName,
+              email: email,
+              position: { latitude: "0", longitude: "0" },
+              roles: [ROLES.PLAYER],
+              displayName: "update",
+              isLoggedIn: false
+            })
+            .then(() => {
+              this.setState({ error: null });
+              this.props.history.push(ROUTES.TUTORIAL);
+            })
+        } else {
+          this.setState({ error: null });
+          this.props.history.push(ROUTES.MAP);
+        }
       })
       .catch(error => {
         this.setState({ error });
-      });
+      })
 
     event.preventDefault();
   };
@@ -250,7 +238,12 @@ class SignInGoogleBase extends Component {
     return (
       <form onSubmit={this.onSubmit} >
         <UIRow height="" flex row center>
-          <Button type="submit" value="sign_in_with_goolge" text="Google" fullW margin />
+          <Button
+            type="submit"
+            value="sign_in_with_goolge"
+            text="Google"
+            fullW margin
+          />
         </UIRow>
         {error && <p>{error.message}</p>}
       </form>
@@ -269,25 +262,45 @@ class SignInFacebookBase extends Component {
     this.props.firebase
       .doSignInWithFacebook()
       .then(socialAuthUser => {
-        // Create a user in your Firebase Realtime Database too
-        this.props.firebase
-          .user(socialAuthUser.user.uid)
-          .set({
-            username: socialAuthUser.additionalUserInfo.profile.name,
-            email: socialAuthUser.additionalUserInfo.profile.email,
-            position: socialAuthUser.user.position,
-            roles: [],
-            displayName: socialAuthUser.user.displayName
-          })
-          .then(() => {
-            this.setState({ error: null });
-            this.props.history.push(ROUTES.TUTORIAL);
-          })
-          .catch(error => {
-            this.setState({ error });
-          });
-      })
-      .catch(error => {
+
+        const {
+          additionalUserInfo: {
+            profile: {
+              first_name,
+              last_name,
+              email
+            },
+            isNewUser,
+            user: {
+              uid
+            }
+          }
+        } = socialAuthUser;
+
+        if (isNewUser) {
+          // Create a user in your Firebase Realtime Database too
+          this.props.firebase
+            .user(uid)
+            .set({
+              username: `${first_name} ${last_name}`,
+              email: email,
+              position: { latitude: "0", longitude: "0" },
+              roles: [ROLES.PLAYER],
+              displayName: "update",
+              isLoggedIn: false
+            })
+            .then(() => {
+              this.setState({ error: null });
+              this.props.history.push(ROUTES.TUTORIAL);
+            })
+            .catch(error => {
+              this.setState({ error });
+            });
+        } else {
+          this.setState({ error: null });
+          this.props.history.push(ROUTES.MAP);
+        }
+      }).catch(error => {
         this.setState({ error });
       });
 
@@ -306,7 +319,7 @@ class SignInFacebookBase extends Component {
           {error && <p>{error.message}</p>}
         </form>
         <UIRow style={{ height: "10%", paddingTop: "20px" }} flex row center>
-          <StyledLink to={ROUTES.TUTORIAL}>
+          <StyledLink to={ROUTES.HOME}>
             <Text gold>Back</Text>
           </StyledLink>
         </UIRow>
@@ -314,16 +327,6 @@ class SignInFacebookBase extends Component {
     );
   }
 }
-
-
-
-// const SignUpLink = () => (
-//   <p>
-//     Don't have an account? <Link to={ROUTES.SIGN_UP}>Sign Up</Link>
-//   </p>
-// );
-
-
 
 const SignUpForm = compose(
   withRouter,

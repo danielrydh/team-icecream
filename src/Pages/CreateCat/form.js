@@ -2,12 +2,11 @@ import React, { Component } from 'react';
 import Button from '../../components/UI/Button';
 import { Fieldset, Input } from './style';
 import * as ROUTES from '../../constants/routes';
-import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/database';
 import { withFirebase } from '../Firebase';
 import { compose } from 'recompose';
-import { /*Link,*/ withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 class FormBase extends Component {
   constructor(props) {

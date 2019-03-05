@@ -1,1 +1,2 @@
-export const Admin = 'Admin';
+export const ADMIN = 'Admin';
+export const PLAYER = 'Player';

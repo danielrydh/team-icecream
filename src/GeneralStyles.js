@@ -60,18 +60,20 @@ export const UIImg = styled.img`
 `;
 
 export const Input = styled.input`
-  background:transparent;
-  color: white;
+  background: #fff;
+  color: #28344D;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-content: center;
-  height: 30px;
   width: 100%;
   margin-bottom: 10px;
+  padding: 1rem;
   border: none;
   text-align: center;
   outline: none;
+
+  font-family: 'Press Start 2P';
 
   :focus {
     border-bottom: 1px solid gold;

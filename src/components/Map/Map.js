@@ -10,14 +10,11 @@ class MapPage extends Component {
 
   render() {
     return (
-      <div>
-
-        <AuthUserContext.Consumer>
-          {authUser => (
-            <LocatedTwo userId={authUser.uid} firebase={this.props.firebase} />
-          )}
-        </AuthUserContext.Consumer>
-      </div>
+      <AuthUserContext.Consumer>
+        {authUser => (
+          <LocatedTwo authUser={authUser} firebase={this.props.firebase} />
+        )}
+      </AuthUserContext.Consumer>
     );
   }
 }
