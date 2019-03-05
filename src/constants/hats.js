@@ -12,9 +12,8 @@ import hat4_128x128 from './assets/hats/hat4_128x128.png';
 import hat5_128x128 from './assets/hats/hat5_128x128.png';
 
 
-
-const hats = {
-  hat1: {
+const hats = [
+  {
     name: 'Master Hat',
     small_icon: hat1,
     big_icon: hat1_128x128,
@@ -24,7 +23,7 @@ const hats = {
       type: 'speed'
     }
   },
-  hat2: {
+  {
     name: 'Jumpy hat',
     small_icon: hat2,
     big_icon: hat2_128x128,
@@ -34,37 +33,34 @@ const hats = {
       type: 'jump'
     }
   },
-  hat3: {
-    name: '',
-    small_icon: hat3,
-    big_icon: hat3_128x128,
+  {
+    name: 'Wierd hat',
+    icon: hat3,
     tier: 1,
     powerup: {
       modifier: 1,
       type: null
     }
   },
-  hat4: {
-    name: '',
-    small_icon: hat4,
-    big_icon: hat4_128x128,
+  {
+    name: 'Cool hat',
+    icon: hat4,
     tier: 1,
     powerup: {
       modifier: 1,
       type: null
     }
   },
-  hat5: {
-    name: '',
-    small_icon: hat5,
-    big_icon: hat5_128x128,
+  {
+    name: 'Epic hat',
+    icon: hat5,
     tier: 1,
     powerup: {
       modifier: 1,
       type: null
     }
   }
-}
+]
 
 /*export const bigHats = {
   hat1x128: {

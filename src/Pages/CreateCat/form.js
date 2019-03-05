@@ -1,106 +1,80 @@
 import React, { Component } from 'react';
 import Button from '../../components/UI/Button';
 import { Fieldset, Input } from './style';
-import { StyledLink } from '../../GeneralStyles';
 import * as ROUTES from '../../constants/routes';
-import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/database';
+import { withFirebase } from '../Firebase';
+import { compose } from 'recompose';
+import { withRouter } from 'react-router-dom';
 
-import Carousel from '../../components/SwipeCarusel';
-import { hatsArray, catsArray } from './data';
-import Firebase from '../Firebase/firebase';
+const formStyles = {
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+}
 
-
-
-class Form extends Component {
+class FormBase extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      displayName: ''
+      displayName: props.initialValue
     };
-
-
-
-    this.handleChange = this.handleChange.bind(this);
-    //this.handleSubmit = this.handleSubmit.bind(this);
 
   }
 
   handleChange = event => {
     this.setState({ displayName: event.target.value });
   }
-  handleSubmit() {
-    alert(`Welcome to the game  ${this.state.displayName}`);
-    //event.preventDefault();
-  }
-
-
-
-
 
   onSubmit = event => {
-
     const { displayName } = this.state;
-    firebase.auth().onAuthStateChanged(function (user) {
-      this.props.firebase
-        .user()
-        .child("displayName")
-        .update({
-          displayName: displayName
-        })
-        .then(() => {
-          this.setState({ error: null });
-          this.props.history.push(ROUTES.MAP);
-
-        })
-        .catch(error => {
-          this.setState({ error });
-        });
-    })
-      .catch(error => {
-        this.setState({ error });
-      });
-
+    this.props.firebase.user(this.props.userId).update({
+      displayName
+    });
+    this.props.history.push(ROUTES.MAP)
     event.preventDefault();
   };
 
 
-
   render() {
-
     const { displayName } = this.state;
-
     return (
-      <form onSubmit={this.onSubmit} >
+      <form style={formStyles} onSubmit={this.onSubmit}>
         <Fieldset>
           <Input
             type="text"
-            placeholder="WRITE YOUR DISPLAY NAME HERE"
+            placeholder="Cat name"
             value={displayName}
             onChange={this.handleChange}
             flex
             row
             fullW
             margin
+            maxLength="15"
+
+            style={{ textAlign: 'center' }}
           />
         </Fieldset>
-        <StyledLink to={ROUTES.MAP}>
-          <Button
-            type="submit"
-            value="submit"
-            text="START"
-            onClick={() => this.handleSubmit()}
-            fullW
-            margin
-            center
-          />
-        </StyledLink>
+        {/* <StyledLink to={ROUTES.MAP}> */}
+        <Button
+          type="submit"
+          text="START"
+          // onClick={() => this.handleSubmit()}
+          fullW
+          margin
+          center
+        />
+        {/* </StyledLink> */}
       </form>
+
     )
   }
 }
 
-
+const Form = compose(
+  withRouter,
+  withFirebase,
+)(FormBase);
 export default Form;

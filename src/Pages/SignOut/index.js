@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import 'firebase/auth';
-//import {Link, withRouter} from 'react-router-dom';
 import Button from '../../components/UI/Button';
 import * as ROUTES from '../../constants/routes';
 import { withFirebase } from '../Firebase';
@@ -10,11 +9,9 @@ class SignOutButton extends Component {
 
   handleLogout = (func) => {
     func.doSignOut();
-
   }
 
   render() {
-    //console.log(this.props)
     return (
       <UIRow flex row center>
         <StyledLink to={ROUTES.HOME}>
@@ -34,5 +31,3 @@ class SignOutButton extends Component {
 
 
 export default withFirebase(SignOutButton);
-
-//onClick={(event) => { func1(); func2();}}

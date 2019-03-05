@@ -14,7 +14,6 @@ const INITIAL_STATE = {
 class PasswordChangeForm extends Component {
   constructor(props) {
     super(props);
-
     this.state = { ...INITIAL_STATE };
   }
 
@@ -23,15 +22,6 @@ class PasswordChangeForm extends Component {
 
     this.props.firebase
       .doPasswordUpdate(passwordOne)
-      //.then(authUser => {
-      // Create a user in your Firebase realtime database
-      // this.props.firebase
-      //   .user(authUser.user.uid)
-      //   .set({
-      //     username,
-      //     email,
-      //     roles,
-      //   })
       .then(() => {
         this.setState({ ...INITIAL_STATE });
       })
@@ -63,6 +53,7 @@ class PasswordChangeForm extends Component {
               type="password"
               placeholder="New Password"
             />
+
             <Input
               name="passwordTwo"
               value={passwordTwo}
@@ -70,7 +61,15 @@ class PasswordChangeForm extends Component {
               type="password"
               placeholder="Confirm New Password"
             />
-            <Button disabled={isInvalid} type="submit" value="reset-my-password" text="Reset My Password" fullW margin />
+
+            <Button
+              disabled={isInvalid}
+              type="submit"
+              value="reset-my-password"
+              text="Reset My Password"
+              fullW
+              margin
+            />
 
 
             {error && <p>{error.message}</p>}

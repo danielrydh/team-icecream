@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "firebase": "^5.8.2",
+    "firebase": "^5.8.4",
     "google-maps-react": "^2.0.2",
     "leaflet": "^1.4.0",
     "npm-merge-driver": "^2.3.5",

@@ -4,21 +4,21 @@ import { ArrowNext, Icon, ArrowThinPrevious } from '../../components/UI/CreateCa
 import ui from '../../constants/ui';
 import { UIRow } from '../../GeneralStyles';
 
-const Carousel = ({ data, cats }) => {
+const Carousel = ({ hats, cats }) => {
   let reactSwipeEl, reactSwipeEl2;
 
   return (
-    <div >
+    <div style={{ height: '100%' }}>
       <ReactSwipe
         className="carousel"
         swipeOptions={{ continuous: false }}
         ref={el => (reactSwipeEl = el)}
       >
-        {data.map((icon, index) => {
+        {hats.map((hat, index) => {
           return (
             <UIRow key={index} flex row center>
               <div className="item">
-                <Icon src={icon.icon} />
+                <Icon src={hat.icon} />
 
 
               </div>
@@ -40,11 +40,11 @@ const Carousel = ({ data, cats }) => {
         swipeOptions={{ continuous: false }}
         ref={el => (reactSwipeEl2 = el)}
       >
-        {cats.map((icon, index) => {
+        {cats.map((cat, index) => {
           return (
             <UIRow key={index} flex row center>
               <div className="item">
-                <Icon src={icon.idle} />
+                <Icon src={cat.animations.idle} />
               </div>
             </UIRow>
           );

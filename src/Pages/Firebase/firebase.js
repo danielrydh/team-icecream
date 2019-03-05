@@ -3,6 +3,7 @@ import 'firebase/auth';
 import 'firebase/database';
 import { config } from '../../key';
 
+
 var Config = config;
 
 class Firebase {
@@ -38,6 +39,9 @@ class Firebase {
   doPasswordUpdate = password =>
     this.auth.currentUser.updatePassword(password);
 
+  doUpdateDisplayeNameAndCatNhAt = displayName =>
+    this.auth.currentUser.doUpdateDisplayeNameAndCatNhAt(displayName);
+
   // *** Merge Auth and DB User API *** //
   onAuthUserListener = (next, fallback) =>
     this.auth.onAuthStateChanged(authUser => {
@@ -46,11 +50,6 @@ class Firebase {
           .once('value')
           .then(snapshot => {
             const dbUser = snapshot.val();
-
-            // default empty roles
-            if (!dbUser.roles) {
-              dbUser.roles = [];
-            }
             // merge auth and db user
             authUser = {
               uid: authUser.uid,
@@ -72,7 +71,17 @@ class Firebase {
 
   users = () => this.db.ref('users');
 
+  // *** Hats API ***
+
+  hat = uid => this.db.ref(`hats/${uid}`);
+
   hats = () => this.db.ref('hats');
+
+  // *** Cats API ***
+
+  cat = uid => this.db.ref(`cats/${uid}`);
+
+  cats = () => this.db.ref('cats');
 }
 
 export default Firebase;

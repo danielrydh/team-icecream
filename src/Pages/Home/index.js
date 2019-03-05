@@ -1,30 +1,28 @@
 import React, { Fragment } from 'react';
 import { Text } from '../../components/UI/TextComponent';
 import { UIRow, UIImg, StyledLink } from '../../GeneralStyles';
-// import { withAuthorization } from '../Session';
 import { Link } from 'react-router-dom';
+
+import { withFirebase } from '../Firebase';
 
 import * as ROUTES from '../../constants/routes';
 
 import Button from '../../components/UI/Button';
-import cats from '../../constants/cats';
-import AutoCarousel from '../../components/AutoSwipeCarusel';
-import { hatsArray } from '../CreateCat/data';
+import cats, { randomCat } from '../../constants/cats';
 
-const Home = () => {
+const Home = ({ firebase }) => {
+
+  console.log(firebase.hats().once('value', snapshot => console.log(snapshot.val())));
+
   return (
     <Fragment>
       <UIRow height="25%" flex row center>
         <Text heading gold center nomargin>Cats With Hats</Text>
       </UIRow>
 
-      <UIRow>
-        <AutoCarousel hats={hatsArray} />
-      </UIRow>
-
       <UIRow height="50%" flex startCenter>
         <Link to={ROUTES.HOME} style={{ height: '100%' }}>
-          <UIImg src={cats.grey.idle} height="80%" />
+          <UIImg src={randomCat(cats)} height="80%" />
         </Link>
       </UIRow>
 
@@ -42,4 +40,4 @@ const Home = () => {
 // const condition = authUser => !!authUser;
 
 // export default withAuthorization(condition)(Home);
-export default Home;
+export default withFirebase(Home);

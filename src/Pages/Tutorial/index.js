@@ -2,12 +2,16 @@ import React, { Fragment, Component } from 'react';
 import { UIRow } from '../../GeneralStyles';
 import SpeakingBubble from '../../components/UI/SpeakingBubble';
 
-import cats from '../../constants/cats';
+import { withRouter } from 'react-router-dom';
+
+import cats, { randomCat } from '../../constants/cats';
 
 import { NextBtn, Paragraph, Icon } from '../../components/UI/SpeakingBubble/styles';
 
 import ui from '../../constants/ui';
 import * as data from './data';
+
+import * as ROUTES from '../../constants/routes';
 
 class Tutorial extends Component {
   state = {
@@ -18,11 +22,15 @@ class Tutorial extends Component {
   handlePageChange = () => {
     if (this.state.current !== 2) {
       this.setState(prevState => (
-        { current: prevState + 1 }
+        { current: prevState.current + 1 }
       ))
     } else {
-      // switch page to create cat
+      this.props.history.push(ROUTES.CREATE_CAT);
     }
+  }
+
+  handleSkip = () => {
+    this.props.history.push(ROUTES.CREATE_CAT);
   }
 
   render() {
@@ -30,13 +38,13 @@ class Tutorial extends Component {
 
     return (
       <Fragment>
-        <UIRow height="80%" flex center>
-          <SpeakingBubble content={pages[current]} height="90%" />
+        <UIRow height="75%" flex center>
+          <SpeakingBubble handleChange={this.handlePageChange} content={pages[current]} height="90%" />
         </UIRow>
 
-        <UIRow height="20%" flex row startCenter>
-          <Icon src={cats.grey.idle} scale="2.5" />
-          <NextBtn>
+        <UIRow height="25%" flex row startCenter>
+          <Icon src={randomCat(cats)} scale="2.5" />
+          <NextBtn onClick={() => this.handleSkip()}>
             <Paragraph light noMargin >Skip</Paragraph>
             <Icon noMargin src={ui.icons.arrow_large} scale="0.8" />
           </NextBtn>
@@ -45,4 +53,4 @@ class Tutorial extends Component {
     );
   }
 }
-export default Tutorial;
+export default withRouter(Tutorial);
