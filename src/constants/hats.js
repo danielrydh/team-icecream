@@ -1,5 +1,3 @@
-
-
 import hat1 from './assets/hats/hat1.png';
 import hat2 from './assets/hats/hat2.png';
 import hat3 from './assets/hats/hat3.png';
@@ -11,47 +9,27 @@ const hats = [
   {
     name: 'Master Hat',
     icon: hat1,
-    tier: 2,
-    powerup: {
-      modifier: 1.25,
-      type: 'speed'
-    }
+    id: 0
   },
   {
     name: 'Jumpy hat',
     icon: hat2,
-    tier: 3,
-    powerup: {
-      modifier: 1.3,
-      type: 'jump'
-    }
+    id: 1
   },
   {
     name: 'Wierd hat',
     icon: hat3,
-    tier: 1,
-    powerup: {
-      modifier: 1,
-      type: null
-    }
+    id: 2
   },
   {
     name: 'Cool hat',
     icon: hat4,
-    tier: 1,
-    powerup: {
-      modifier: 1,
-      type: null
-    }
+    id: 3
   },
   {
     name: 'Epic hat',
     icon: hat5,
-    tier: 1,
-    powerup: {
-      modifier: 1,
-      type: null
-    }
+    id: 4
   }
 ]
 

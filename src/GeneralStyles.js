@@ -52,6 +52,19 @@ export const UIRow = styled.div`
       justify-content: flex-end;
       align-items: center;
     `: null};
+
+    ${p => p.spaceBetween
+    ? `
+      justify-content: space-between;
+    `
+    : null};
+    
+    ${p => p.spaceEvenlyCenter
+    ? `
+      justify-content: space-evenly;
+      align-items: center;
+    `
+    : null};
 `;
 
 export const UIImg = styled.img`
@@ -115,11 +128,10 @@ export const StyledLink = styled(Link)`
   flex-direction: column;
   justify-content: center;
   align-content: center;
-  margin-bottom: 1rem;
+  align-items: center;
+  margin-bottom: ${p => p.noMargin ? null : '1rem'};
 
-  @media screen and (min-width: 600px) {
-    margin-bottom: 1.5rem;
-  }
+  
 
   :nth-last-of-type(1) {
     margin-bottom: 0;

@@ -2,7 +2,7 @@ import React, { Fragment, Component } from 'react';
 import { UIRow } from '../../GeneralStyles';
 import SpeakingBubble from '../../components/UI/SpeakingBubble';
 
-import { withRouter } from 'react-router-dom';
+import { withAuthorization } from '../Session';
 
 import cats, { randomCat } from '../../constants/cats';
 
@@ -38,7 +38,7 @@ class Tutorial extends Component {
 
     return (
       <Fragment>
-        <UIRow height="75%" flex center>
+        <UIRow height="75%" flex center style={{ paddingTop: '1rem' }}>
           <SpeakingBubble handleChange={this.handlePageChange} content={pages[current]} height="90%" />
         </UIRow>
 
@@ -53,4 +53,7 @@ class Tutorial extends Component {
     );
   }
 }
-export default withRouter(Tutorial);
+
+const condition = authUser => !!authUser;
+
+export default withAuthorization(condition)(Tutorial);

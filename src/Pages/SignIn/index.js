@@ -19,7 +19,6 @@ import { PasswordForgetLink } from '../../Pages/PasswordForgot';
 import { UIRow, Input, Form } from '../../GeneralStyles';
 
 // Constants 
-import * as ROLES from '../../constants/roles';
 import * as ROUTES from '../../constants/routes';
 
 
@@ -45,37 +44,14 @@ class SignInFormBase extends Component {
   }
 
   onSubmit = event => {
+    const { email, password } = this.state;
     this.props.firebase
-      .doSignInWithGoogle()
-      .then(socialAuthUser => {
-
-        const {
-          user: { uid, displayName, email },
-          additionalUserInfo: { isNewUser }
-        } = socialAuthUser;
-
-        if (isNewUser) {
-          // If new user => Create a user new user and redirect to TUTORIAL
-          this.props.firebase
-            .user(uid)
-            .set({
-              username: displayName,
-              email: email,
-              position: { latitude: "0", longitude: "0" },
-              roles: [ROLES.PLAYER],
-              displayName: "update",
-              isLoggedIn: false,
-            })
-            .then(() => {
-              this.setState({ error: null });
-              this.props.history.push(ROUTES.TUTORIAL);
-            })
-        } else {
-          // If user is has account => go to map
-          this.setState({ error: null });
-          this.props.history.push(ROUTES.MAP);
-        }
-      })
+      .doSignInWithEmailAndPassword(email, password)
+      .then(authUser => {
+        this.setState({ error: null });
+        this.props.history.push(ROUTES.MAP);
+      }
+      )
       .catch(error => {
         this.setState({ error });
       })

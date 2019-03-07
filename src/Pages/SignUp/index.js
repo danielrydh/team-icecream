@@ -13,8 +13,6 @@ import Popup from 'reactjs-popup';
 import './popUp.css';
 
 
-
-
 const INITIAL_STATE = {
   username: '',
   email: '',
@@ -113,8 +111,10 @@ class SignUpFormBase extends Component {
               <div className="modal">
 
                 <div className="content">
-                  <UIRow flex center>
-                    <Form onSubmit={this.onSubmit}>
+                  <UIRow height="10%" flex center>
+                    <Text center heading gold>Enter Info</Text></UIRow>
+                  <UIRow height="90%" flex startCenter>
+                    <Form fullW onSubmit={this.onSubmit}>
                       <Input
                         name="username"
                         value={username}
@@ -184,7 +184,6 @@ class SignUpFormBase extends Component {
 class SignInGoogleBase extends Component {
   constructor(props) {
     super(props);
-
     this.state = { error: null };
   }
 
@@ -193,14 +192,18 @@ class SignInGoogleBase extends Component {
       .doSignInWithGoogle()
       .then(socialAuthUser => {
 
+        console.log(socialAuthUser)
         const {
           additionalUserInfo: {
-            user: {
-              displayName,
+            profile: {
+              given_name,
+              family_name,
               email,
-              uid
             },
             isNewUser
+          },
+          user: {
+            uid
           }
         } = socialAuthUser;
 
@@ -209,7 +212,7 @@ class SignInGoogleBase extends Component {
           this.props.firebase
             .user(uid)
             .set({
-              username: displayName,
+              username: `${given_name} ${family_name}`,
               email: email,
               position: { latitude: "0", longitude: "0" },
               roles: [ROLES.PLAYER],
@@ -262,7 +265,6 @@ class SignInFacebookBase extends Component {
     this.props.firebase
       .doSignInWithFacebook()
       .then(socialAuthUser => {
-
         const {
           additionalUserInfo: {
             profile: {

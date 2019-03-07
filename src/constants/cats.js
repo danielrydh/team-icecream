@@ -16,12 +16,12 @@ const cats = [
     id: 0,
     name: "brown",
     animations: {
-      idle: brown_idle,
+      idle: brown_idle
     }
   },
   {
     id: 1,
-    name: "light-brown",
+    name: "light_brown",
     animations: {
       idle: light_brown_idle
     }

@@ -16,7 +16,7 @@ class SignOutButton extends Component {
       <UIRow flex row center>
         <StyledLink to={ROUTES.HOME}>
           <Button
-            style={{ height: "40px", background: 'transparent', color: 'hsla(45,86%,55%,1)' }}
+            style={{ background: 'transparent', color: '#FFF' }}
             type="button"
             onClick={() => this.handleLogout(this.props.firebase)}
             value="sign_out"

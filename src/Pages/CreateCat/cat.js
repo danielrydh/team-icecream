@@ -1,9 +1,6 @@
 import React, { Component } from "react";
 
-import { compose } from "recompose";
-
 import { AuthUserContext, withAuthorization } from "../../Pages/Session";
-import { withFirebase } from "../../Pages/Firebase";
 import Form from './form';
 
 class Cat extends Component {
@@ -23,7 +20,4 @@ class Cat extends Component {
 
 const condition = authUser => !!authUser;
 
-export default compose(
-  withFirebase,
-  withAuthorization(condition)
-)(Cat);
+export default withAuthorization(condition)(Cat);

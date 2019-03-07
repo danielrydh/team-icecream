@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import Button from '../../components/UI/Button';
 import { UIRow, Input, Form, StyledLink } from '../../GeneralStyles';
-import { withFirebase } from '../Firebase';
+import { withAuthorization } from '../Session';
 import { Text } from '../../components/UI/TextComponent';
 import * as ROUTES from '../../constants/routes';
 
@@ -85,4 +85,6 @@ class PasswordChangeForm extends Component {
   }
 }
 
-export default withFirebase(PasswordChangeForm);
+const condition = authUser => !!authUser;
+
+export default withAuthorization(condition)(PasswordChangeForm);

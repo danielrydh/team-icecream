@@ -14,11 +14,13 @@ import Settings from '../../Pages/Settings';
 import Battle from '../../Pages/Battle';
 import CreateCat from '../../Pages/CreateCat';
 import PasswordChange from '../../Pages/PasswordChange';
+import History from '../../Pages/History';
 
-// 
+// Constants
 import * as ROUTES from '../../constants/routes';
-import { withAuthentication } from '../../Pages/Session';
 
+// HOC
+import { withAuthentication } from '../../Pages/Session';
 
 
 const App = () => (
@@ -34,6 +36,7 @@ const App = () => (
         <Route path={ROUTES.BATTLE} component={Battle} />
         <Route path={ROUTES.PASSWORD_FORGET} component={PasswordChange} />
         <Route path={ROUTES.CREATE_CAT} component={CreateCat} />
+        <Route path={ROUTES.HISTORY} component={History} />
       </Container>
     </Router>
   </div>

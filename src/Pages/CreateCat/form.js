@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Button from '../../components/UI/Button';
 import { Fieldset, Input } from './style';
-import * as ROUTES from '../../constants/routes';
 import 'firebase/auth';
 import 'firebase/database';
 import { withFirebase } from '../Firebase';
@@ -17,37 +16,23 @@ const formStyles = {
 class FormBase extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       displayName: props.initialValue
     };
 
   }
 
-  handleChange = event => {
-    this.setState({ displayName: event.target.value });
-  }
-
-  onSubmit = event => {
-    const { displayName } = this.state;
-    this.props.firebase.user(this.props.userId).update({
-      displayName
-    });
-    this.props.history.push(ROUTES.MAP)
-    event.preventDefault();
-  };
-
-
   render() {
     const { displayName } = this.state;
+    const { onSubmit, handleChange } = this.props;
     return (
-      <form style={formStyles} onSubmit={this.onSubmit}>
+      <form style={formStyles} onSubmit={onSubmit}>
         <Fieldset>
           <Input
             type="text"
             placeholder="Cat name"
             value={displayName}
-            onChange={this.handleChange}
+            onChange={handleChange}
             flex
             row
             fullW
@@ -57,16 +42,13 @@ class FormBase extends Component {
             style={{ textAlign: 'center' }}
           />
         </Fieldset>
-        {/* <StyledLink to={ROUTES.MAP}> */}
         <Button
           type="submit"
           text="START"
-          // onClick={() => this.handleSubmit()}
           fullW
           margin
           center
         />
-        {/* </StyledLink> */}
       </form>
 
     )
