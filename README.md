@@ -24,17 +24,47 @@ A brief overview of the features that needs implementation before the game can g
 * Implement leaderboard feature with lists for most hats and most wins
 * Expand settings to include more options and make sounds link toggle sound on/off
 
+<hr>
+
 *Admin page:*
 * Create component for player list (see XD design)
 * Render all users in the "players" component
 * Add function to add hats to the game on the assets page
 * Get data and display on the dashboard (e.g online users etc)
 
+<hr>
+
 *Unity build:*
 * Get the game to display the cat color from the user (database)
 * Add player indicator above the cat like P1 / P2 (maybe the player displayname)
 * Add a pause when a round has ended
 * Add win/lose screen
+
+## Requirements
+To contribute to this project you will need to be somewhat confortable with react.js, firebase and have used npm libraires a couple of times.
+
+### Unity
+It's not a requirement but we should point out that the battle page is rendered with Unity and brought in by react-unity-webgl and output a score. So knowing your way around unity in somewhat helpful.
+
+## Dependencies
+In this project we were required to use Firebase and Styled-Components. As stated above we used unity (see unity repo https://github.com/danielrydh/cat-game-unity) to build our battle mode. 
+
+These are the dependencies we used. 
+* styled-components (https://github.com/styled-components/styled-components/)
+* firebase (https://firebase.com/)
+* leaflet (https://leafletjs.com/)
+* react (https://reactjs.org/)
+* react-dom (https://www.npmjs.com/package/react-dom)
+* react-router-dom (https://www.npmjs.com/package/react-router-dom)
+* react-scripts (https://www.npmjs.com/package/react-scripts)
+* react-swipe (https://www.npmjs.com/package/react-swipe)
+* react-unity-webgl (https://www.npmjs.com/package/react-unity-webgl)
+* reactjs-popup (https://www.npmjs.com/package/reactjs-popup)
+* react-geolocated (https://www.npmjs.com/package/react-geolocated)
+* recompose (https://www.npmjs.com/package/recompose)
+
+### Fonts
+Google Fonts Press Start 2P (https://fonts.google.com/specimen/Press+Start+2P)
 
 ### Original contributors
 
@@ -63,6 +93,10 @@ https://github.com/danielrydh/cat-game-unity
 Admin page repo
 https://github.com/fabifors/team-icecream-admin
 
+
+# create-react-app
+
+This project was created using create-react-app. (https://github.com/facebook/create-react-app). The following commands are the standard scripts that are used to run, build and install dependecies. 
 
 ## Available Scripts
 
