@@ -1,7 +1,6 @@
+![battle](screenshots/game-flow.png)
+
 # Cat with a Hat
-
-
-
 
 
 ### Original contributors
@@ -10,7 +9,7 @@ Fabian Forsström
 https://github.com/fabifors
 
 Sara Överström
-https://github.com/
+https://github.com/oversteem
 
 Moitrayee Choudhury
 https://github.com/moitrayee3009
