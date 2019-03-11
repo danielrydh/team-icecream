@@ -1,7 +1,5 @@
-# Cats with Hat (vision)
-
 ![battle](screenshots/game-flow.png)
-
+# Cats with Hat (vision)
 
 A cat with a hat is a game where you collect hats, and the player with most hats wins. You can either search for hats on a map in real places around the world or you can challenge people who are nearby on the street.
 
@@ -93,6 +91,9 @@ https://github.com/danielrydh/cat-game-unity
 Admin page repo
 https://github.com/fabifors/team-icecream-admin
 
+
+### Project Plan (backlog etc)
+https://www.notion.so/teamicecream/
 
 # create-react-app
 
