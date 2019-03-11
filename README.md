@@ -85,7 +85,7 @@ https://github.com/danielrydh
 
 
 ## Other repos
-We choose to split everything in to three different 
+We choose to split everything in to three different project repos. Here are the links to the other dependencies. 
 
 Unity repo
 https://github.com/danielrydh/cat-game-unity
@@ -96,11 +96,15 @@ https://github.com/fabifors/team-icecream-admin
 
 # create-react-app
 
-This project was created using create-react-app. (https://github.com/facebook/create-react-app). The following commands are the standard scripts that are used to run, build and install dependecies. 
+This project was created using create-react-app. (https://github.com/facebook/create-react-app). The following commands are the standard scripts that are used to run, build and install dependecies.
 
 ## Available Scripts
 
 In the project directory, you can run:
+
+### `npm install`
+
+Allways run this command to install all dependencies first.
 
 ### `npm start`
 
@@ -109,11 +113,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
 ### `npm run build`
 
